@@ -8,6 +8,7 @@ const App = () => {
   return (
     <div>
       <Header />
+      <button id="startgame">Start</button>
     </div>
   );
 };
