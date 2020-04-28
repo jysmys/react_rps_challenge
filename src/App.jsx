@@ -6,7 +6,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    button: false,
+    display: false,
   };
   onButtonStartGame = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <StartGame onButtonStartGame={this.onButtonStartGame} />
+        <StartGame onButtonStartGame={this.onButtonStartGame} display={this.state.display}/>
       </div>
     );
   }
