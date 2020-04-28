@@ -9,6 +9,12 @@ h1 {
   font-size: 60px;
   letter-spacing: 0.2em;
 }
+p {
+  font-family: "Bangers", cursive;
+  color: #3278ed;
+  font-size: 30px;
+  letter-spacing: 0.2em;
+}
 p#startbutton,
 p#roundbutton {
   font-family: "Bangers", cursive;
@@ -22,8 +28,21 @@ button#startround {
   border-radius: 5px;
   border-color: #3278ed;
   border-width: 3px;
-  width: 150px;
+  width: 200px;
+  height: 150;
   letter-spacing: 0.1em;
   padding-left: 10px;
   padding-right: 10px;
+}
+button.imgbutton {
+  border-width: 0;
+  border-color: #26006e;
+  padding: 0px 0px 0px 0px;
+  margin: 0;
+  width: 150px;
+  height: 240px;
+}
+img {
+  width: inherit;
+  height: inherit;
 }

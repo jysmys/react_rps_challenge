@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import StartGame from "./StartGame";
 import StartRound from "./StartRound";
+import ShowPicks from "./ShowPicks";
 import "./App.css";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -28,6 +29,7 @@ class App extends Component {
           onButtonStartGame={this.onButtonStartGame}
           display={this.state.display}
         />
+        <ShowPicks display={this.state.display} />
         <StartRound
           onButtonStartGame={this.onButtonStartRound}
           display={this.state.display}
