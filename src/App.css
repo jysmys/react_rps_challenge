@@ -26,6 +26,11 @@ p {
   font-size: 30px;
   letter-spacing: 0.2em;
 }
+.countdown {
+  color: #2cdfba;
+  font-size: 100px;
+  font-weight: 900;
+}
 p#startbutton,
 p#roundbutton {
   font-family: "Bangers", cursive;

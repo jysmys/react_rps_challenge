@@ -3,6 +3,8 @@ import Header from "./Header";
 import StartGame from "./StartGame";
 import StartRound from "./StartRound";
 import ShowPicks from "./ShowPicks";
+import Countdown from "./Countdown";
+// import { winner } from "./helpers/winner";
 // import { images } from "./img/rock-paper-scissors-hand-icons/rock-computer.jpg";
 // import ComputerPicks from "./ComputerPicks";
 import "./App.css";
@@ -11,9 +13,11 @@ import "./App.css";
 class App extends Component {
   state = {
     display: false,
+    countdown: false,
     id: "",
     images: [],
     currentImg: 0,
+    winner: "",
   };
 
   onButtonStartGame = (e) => {
@@ -22,13 +26,18 @@ class App extends Component {
   };
 
   onImgPick = (id) => {
-    console.log(id);
     this.setState({ id: id });
   };
 
   onButtonStartRound = (e) => {
     e.preventDefault();
-    this.setState({ display: !this.state.display });
+    console.log("CountDown NOW");
+    this.setState({
+      display: false,
+      countdown: true,
+      counter: this.state.counter,
+    });
+    // console.log(winner());
   };
 
   componentDidMount() {
@@ -39,7 +48,7 @@ class App extends Component {
       require(imgLink + "scissors-computer.jpg"),
     ];
     this.setState({ images: images });
-    this.interval = setInterval(() => this.changeImage(), 500);
+    this.interval = setInterval(() => this.changeImage(), 1000);
   }
 
   componentWillUnmount() {
@@ -70,6 +79,7 @@ class App extends Component {
           <StartGame
             onButtonStartGame={this.onButtonStartGame}
             display={this.state.display}
+            countdown={this.state.countdown}
           />
           <ShowPicks
             display={this.state.display}
@@ -78,9 +88,12 @@ class App extends Component {
             onImgPick={this.onImgPick}
           />
           <StartRound
-            onButtonStartGame={this.onButtonStartRound}
+            onButtonStartRound={this.onButtonStartRound}
             display={this.state.display}
           />
+          {this.state.countdown && (
+            <Countdown countdown={this.state.countdown} counter="5" />
+          )}
         </div>
       </>
     );
