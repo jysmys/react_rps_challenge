@@ -9,17 +9,21 @@ h1 {
   font-size: 60px;
   letter-spacing: 0.2em;
 }
-p#startbutton {
+p#startbutton,
+p#roundbutton {
   font-family: "Bangers", cursive;
-  color: #fd2bf1;
+  color: #2cdfba;
   font-size: 25px;
 }
 
-button#startgame {
+button#startgame,
+button#startround {
   background-color: #26006e;
   border-radius: 5px;
-  border-color: #2cdfba;
-  border-width: 2px;
+  border-color: #3278ed;
+  border-width: 3px;
   width: 150px;
-  padding: 10px;
+  letter-spacing: 0.1em;
+  padding-left: 10px;
+  padding-right: 10px;
 }
