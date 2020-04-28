@@ -11,24 +11,32 @@ import "./App.css";
 class App extends Component {
   state = {
     display: false,
+    id: "",
     images: [],
     currentImg: 0,
   };
+
   onButtonStartGame = (e) => {
     e.preventDefault();
-    console.log("Starta spelet");
     this.setState({ display: !this.state.display });
   };
+
+  onImgPick = (id) => {
+    console.log(id);
+    this.setState({ id: id });
+  };
+
   onButtonStartRound = (e) => {
     e.preventDefault();
-    console.log("Starta round");
-    // this.setState({ display: !this.state.display });
+    this.setState({ display: !this.state.display });
   };
+
   componentDidMount() {
+    const imgLink = "./img/rock-paper-scissors-hand-icons/";
     const images = [
-      require("./img/rock-paper-scissors-hand-icons/rock-computer.jpg"),
-      require("./img/rock-paper-scissors-hand-icons/paper-computer.jpg"),
-      require("./img/rock-paper-scissors-hand-icons/scissors-computer.jpg"),
+      require(imgLink + "rock-computer.jpg"),
+      require(imgLink + "paper-computer.jpg"),
+      require(imgLink + "scissors-computer.jpg"),
     ];
     this.setState({ images: images });
     this.interval = setInterval(() => this.changeImage(), 500);
@@ -54,21 +62,26 @@ class App extends Component {
   render() {
     const { images, currentImg } = this.state;
     let imgString = images[currentImg];
-    console.log(imgString);
 
     return (
       <>
         <Header />
-        <StartGame
-          onButtonStartGame={this.onButtonStartGame}
-          display={this.state.display}
-        />
-        <ShowPicks display={this.state.display} />
-        <img className="dynamicImage" src={imgString} alt=".jpg" />
-        <StartRound
-          onButtonStartGame={this.onButtonStartRound}
-          display={this.state.display}
-        />
+        <div className="game">
+          <StartGame
+            onButtonStartGame={this.onButtonStartGame}
+            display={this.state.display}
+          />
+          <ShowPicks
+            display={this.state.display}
+            id={this.state.id}
+            imgString={imgString}
+            onImgPick={this.onImgPick}
+          />
+          <StartRound
+            onButtonStartGame={this.onButtonStartRound}
+            display={this.state.display}
+          />
+        </div>
       </>
     );
   }

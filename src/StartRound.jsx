@@ -2,7 +2,7 @@ import React from "react";
 
 const StartRound = (props) => {
   return (
-    <div>
+    <div className="startround">
       <button
         id="startround"
         onClick={props.onButtonStartRound}

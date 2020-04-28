@@ -3,6 +3,17 @@
 body {
   background-color: #26006e;
 }
+
+.game,
+nav {
+  display: flex;
+  /* width: 80%; */
+  flex-flow: column wrap;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* align-content: center; */
+}
 h1 {
   font-family: "Bangers", cursive;
   color: #fd2bf1;
@@ -34,6 +45,10 @@ button#startround {
   padding-left: 10px;
   padding-right: 10px;
 }
+.startround {
+  padding-top: 50px;
+}
+
 button.imgbutton {
   border-width: 0;
   border-color: #26006e;
@@ -42,7 +57,16 @@ button.imgbutton {
   width: 150px;
   height: 240px;
 }
-img {
+img#rock,
+img#paper,
+img#scissor {
   width: inherit;
   height: inherit;
+}
+.dynamicImage {
+  width: 130px;
+  height: 220px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
