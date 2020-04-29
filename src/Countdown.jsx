@@ -24,7 +24,7 @@ const Countdown = (props) => {
         <div>{counter}</div>
       </div>
       {counter === 0 && (
-        <div>
+        <div className="roundwinner">
           <Roundwinner />
         </div>
       )}
