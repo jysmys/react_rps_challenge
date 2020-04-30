@@ -11,10 +11,12 @@ describe("User starts a game", () => {
     cy.get("img#scissor").should("be.visible").click();
     cy.get("img#rock").should("not.be.visible");
     cy.get("img#paper").should("not.be.visible");
-    cy.get("button#startround").click();
-    cy.get("div.countdown").should("be.visible");
-    cy.clock();
-    cy.tick(5000);
-    cy.get("div.roundwinner").should("be.visible");
+    while ("#winner".not.exists) {
+      cy.get("button#startround").click();
+      cy.get("div.roundwinner").should("be.visible");
+    }
+    // cy.get("div.countdown").should("be.visible");
+    // cy.clock();
+    // cy.tick(5000);
   });
 });

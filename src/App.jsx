@@ -4,7 +4,10 @@ import StartGame from "./StartGame";
 import StartRound from "./StartRound";
 import ShowPicks from "./ShowPicks";
 import { getComputerChoise } from "./helpers/getComputerChoise";
-import { announceRoundWinner } from "./helpers/announceRoundWinner";
+import {
+  announceRoundWinner,
+  checkGameWinner,
+} from "./helpers/announceRoundWinner";
 import "./App.css";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -16,17 +19,18 @@ class App extends Component {
     images: [],
     currentImg: 0,
     winner: "",
+    gameWin: [],
+    gameWinner: null,
   };
 
-  onButtonStartRound = (e) => {
-    e.preventDefault(); // REMOVE??
-    const winner = announceRoundWinner(this.state.id, getComputerChoise());
-    console.log(winner);
+  onButtonStartRound = () => {
+    const roundWinner = announceRoundWinner(this.state.id, getComputerChoise());
+    const gameWinner = checkGameWinner(roundWinner, this.state.gameWin);
     this.setState({
       display: false,
-      countdown: true,
       counter: this.state.counter,
-      winner: winner,
+      winner: roundWinner,
+      gameWinner: gameWinner,
     });
   };
 
@@ -63,13 +67,13 @@ class App extends Component {
     this.setState({ currentImg: newCurrentImg });
   }
   render() {
-    const { images, currentImg } = this.state;
+    const { display, images, currentImg, winner, gameWinner } = this.state;
     let imgString = images[currentImg];
+    let renderGame;
 
-    return (
-      <>
-        <Header />
-        <div className="game">
+    switch (true) {
+      case !display && gameWinner === null && winner === "":
+        renderGame = (
           <StartGame
             onButtonStartGame={() =>
               this.setState({ display: !this.state.display })
@@ -77,19 +81,59 @@ class App extends Component {
             display={this.state.display}
             countdown={this.state.countdown}
           />
-          <ShowPicks
-            display={this.state.display}
-            id={this.state.id}
-            imgString={imgString}
-            onImgPick={this.onImgPick}
-          />
-          {/* REFACTOR AUTO START round if a img is clicked on??? With a onChangeHandler instead???  */}
-          <StartRound
-            onButtonStartRound={this.onButtonStartRound}
-            display={this.state.display}
-            winner={this.state.winner}
-          />
-        </div>
+        );
+        break;
+      case display && winner === "":
+        renderGame = (
+          <>
+            <ShowPicks
+              display={this.state.display}
+              id={this.state.id}
+              imgString={imgString}
+              onImgPick={this.onImgPick}
+            />
+            <StartRound
+              onButtonStartRound={this.onButtonStartRound}
+              display={this.state.display}
+              winner={this.state.winner}
+            />
+          </>
+        );
+        break;
+      case !display && winner !== "" && gameWinner === null:
+        renderGame = (
+          <>
+            {this.state.winner !== "Nobody" ? (
+              <div id="winner">{this.state.winner} wins this round!</div>
+            ) : (
+              <div id="winner">Nobody wins...</div>
+            )}
+            <button
+              id="nextround"
+              onClick={() =>
+                this.setState({ display: true, winner: "", id: "" })
+              }
+            >
+              Next round
+            </button>
+          </>
+        );
+        break;
+      case !display && gameWinner !== null:
+        renderGame = (
+          <div id="winner">
+            And the winner is... <br />
+            {gameWinner}
+          </div>
+        );
+        break;
+      default:
+    }
+
+    return (
+      <>
+        <Header />
+        <div className="game">{renderGame}</div>
       </>
     );
   }

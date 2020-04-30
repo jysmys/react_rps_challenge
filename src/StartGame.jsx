@@ -2,11 +2,7 @@ import React from "react";
 
 const StartGame = (props) => {
   return (
-    <div
-      style={{
-        display: (props.display && "none") || (props.countdown && "none"),
-      }}
-    >
+    <div>
       <div>
         <p>
           Click here to start a game against the computer <br /> Best of 5

@@ -10,7 +10,7 @@ const ShowPicks = (props) => {
   const displayScissor = props.id === "scissor" || (props.id === "" && true);
 
   return (
-    <div style={{ display: !props.display && "none" }}>
+    <div>
       <div className="computerspick" id="computer">
         <p>Computers pick ???</p>
         <img className="dynamicImage" src={props.imgString} alt=".jpg" />

@@ -8,12 +8,12 @@ const StartRound = (props) => {
       </button>
     </div>
   );
-  // const winnerTag = <div id="winner">Winner is {props.winner}!</div>;
-  console.log(props.winner);
   return (
     <div>
       {props.display && props.winner === "" && start}
-      {props.winner !== "" && <div id="winner">{props.winner}!</div>}
+      {props.winner !== "" && (
+        <div id="winner">{props.winner} wins this round...</div>
+      )}
     </div>
   );
 };

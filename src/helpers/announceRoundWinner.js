@@ -1,29 +1,44 @@
 export const announceRoundWinner = (userChoice, computerChoice) => {
-  console.log(userChoice + "    " + computerChoice);
   switch (userChoice) {
     case computerChoice:
-      return "Game was tied";
+      return "Nobody";
     case "paper":
       return computerChoice === "scissor"
-        ? "Computer wins"
+        ? "Computer"
         : computerChoice === "rock"
-        ? "You win"
-        : "Computer wins";
+        ? "Player"
+        : "Computer";
     case "scissor":
       return computerChoice === "paper"
-        ? "You win"
+        ? "Player"
         : computerChoice === "rock"
-        ? "Computer wins"
-        : "You win";
+        ? "Computer"
+        : "Player";
     case "rock":
       return computerChoice === "paper"
-        ? "Computer wins"
+        ? "Computer"
         : computerChoice === "scissor"
-        ? "You win"
-        : "Computer wins";
-    case "bomb":
-      return "you are the master";
+        ? "Player"
+        : "Computer";
     default:
       break;
   }
+};
+
+export const checkGameWinner = (roundWinner, gameWin) => {
+  let player = 0;
+  let computer = 0;
+  gameWin.push(
+    roundWinner === "Player" ? 1 : roundWinner === "Computer" ? 0 : null
+  );
+  gameWin.forEach((i) => {
+    i === 1 && player++;
+    i === 0 && computer++;
+  });
+
+  console.log("player: " + player + " computer: " + computer);
+  const gamewinner =
+    player === 2 ? "Player" : computer === 2 ? "Computer" : null;
+
+  return gamewinner;
 };
