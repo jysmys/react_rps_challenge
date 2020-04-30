@@ -17,5 +17,4 @@ const StartGame = (props) => {
     </div>
   );
 };
-
 export default StartGame;

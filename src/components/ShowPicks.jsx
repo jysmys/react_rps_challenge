@@ -1,9 +1,9 @@
 import React from "react";
 
 const ShowPicks = (props) => {
-  const imageRock = require("./img/rps/rock.jpg");
-  const imagePaper = require("./img/rps/paper.jpg");
-  const imageSciccor = require("./img/rps/scissors.jpg");
+  const imageRock = require("../img/rps/rock.jpg");
+  const imagePaper = require("../img/rps/paper.jpg");
+  const imageSciccor = require("../img/rps/scissors.jpg");
   const handleClick = (e) => props.onImgPick(e.target.id);
   const displayRock = props.id === "rock" || (props.id === "" && true);
   const displayPaper = props.id === "paper" || (props.id === "" && true);

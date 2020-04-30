@@ -3,6 +3,3 @@ export const getComputerChoise = () => {
   const random = Math.floor(Math.random() * computer.length);
   return computer[random];
 };
-
-
-

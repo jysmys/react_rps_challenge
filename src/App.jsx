@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import StartGame from "./StartGame";
-import StartRound from "./StartRound";
-import ShowPicks from "./ShowPicks";
-import NextRound from "./NextRound";
+import StartGame from "./components/StartGame";
+import StartRound from "./components/StartRound";
+import ShowPicks from "./components/ShowPicks";
+import NextRound from "./components/NextRound";
 import { getComputerChoise } from "./helpers/getComputerChoise";
 import {
   announceRoundWinner,
   checkGameWinner,
 } from "./helpers/announceRoundWinner";
 import "./App.css";
+import Winner from "./components/Winner";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
@@ -22,17 +23,22 @@ class App extends Component {
     winner: "",
     gameWin: [],
     gameWinner: null,
+    playerWins: 0,
+    computerWins: 0,
   };
   onButtonStartRound = () => {
     const computer = getComputerChoise();
     const roundWinner = announceRoundWinner(this.state.id, computer);
-    const gameWinner = checkGameWinner(roundWinner, this.state.gameWin);
+    const wins = checkGameWinner(roundWinner, this.state.gameWin);
+    console.log(wins);
     this.setState({
       display: false,
       counter: this.state.counter,
       winner: roundWinner,
-      gameWinner: gameWinner,
+      gameWinner: wins.gamewinner,
       computer: computer,
+      playerWins: wins.player,
+      computerWins: wins.computer,
     });
   };
   onImgPick = (id) => {
@@ -71,6 +77,8 @@ class App extends Component {
       gameWinner,
       id,
       computer,
+      playerWins,
+      computerWins,
     } = this.state;
     let imgString = images[currentImg];
     let renderGame;
@@ -107,6 +115,8 @@ class App extends Component {
               winner={winner}
               id={id}
               computer={computer}
+              playerWins={playerWins}
+              computerWins={computerWins}
               onclick={() =>
                 this.setState({ display: true, winner: "", id: "" })
               }
@@ -116,25 +126,16 @@ class App extends Component {
         break;
       case !display && gameWinner !== null:
         renderGame = (
-          <>
-            <div id="winner">
-              And the winner is... <br />
-              {gameWinner}
-            </div>
-            <button
-              id="playagain"
-              onClick={() => {
-                this.setState({
-                  display: true,
-                  gameWinner: null,
-                  winner: "",
-                  id: "",
-                });
-              }}
-            >
-              <p>Play again</p>
-            </button>
-          </>
+          <Winner gameWinner={gameWinner}
+            onButtonPlayAgain={() => {
+              this.setState({
+                display: true,
+                gameWinner: null,
+                winner: "",
+                id: "",
+              });
+            }}
+          />
         );
         break;
       default:

@@ -35,10 +35,7 @@ export const checkGameWinner = (roundWinner, gameWin) => {
     i === 1 && player++;
     i === 0 && computer++;
   });
-
-  console.log("player: " + player + " computer: " + computer);
   const gamewinner =
     player === 2 ? "Player" : computer === 2 ? "Computer" : null;
-
-  return gamewinner;
+  return { gamewinner, player, computer };
 };
