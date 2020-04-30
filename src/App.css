@@ -39,13 +39,12 @@ p#roundbutton {
 }
 
 button#startgame,
-button#startround {
+button#startround,
+button#nextround {
   background-color: #26006e;
   border-radius: 5px;
   border-color: #3278ed;
   border-width: 3px;
-  width: 200px;
-  height: 150;
   letter-spacing: 0.1em;
   padding-left: 10px;
   padding-right: 10px;
@@ -77,7 +76,11 @@ img#scissor {
 }
 #winner {
   font-family: "Bangers", cursive;
-  color: #fd2bf1;
+  color: #2cdfba;
   font-size: 40px;
   letter-spacing: 0.2em;
+}
+#roundpick {
+  width: 180px;
+  height: 150px;
 }

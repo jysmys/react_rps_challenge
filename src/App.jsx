@@ -3,6 +3,7 @@ import Header from "./Header";
 import StartGame from "./StartGame";
 import StartRound from "./StartRound";
 import ShowPicks from "./ShowPicks";
+import NextRound from "./NextRound";
 import { getComputerChoise } from "./helpers/getComputerChoise";
 import {
   announceRoundWinner,
@@ -14,28 +15,31 @@ import "./App.css";
 class App extends Component {
   state = {
     display: false,
-    countdown: false,
     id: "",
+    computer: "",
     images: [],
     currentImg: 0,
     winner: "",
     gameWin: [],
     gameWinner: null,
   };
-
   onButtonStartRound = () => {
-    const roundWinner = announceRoundWinner(this.state.id, getComputerChoise());
+    const computer = getComputerChoise();
+    const roundWinner = announceRoundWinner(this.state.id, computer);
     const gameWinner = checkGameWinner(roundWinner, this.state.gameWin);
     this.setState({
       display: false,
       counter: this.state.counter,
       winner: roundWinner,
       gameWinner: gameWinner,
+      computer: computer,
     });
   };
-
+  onImgPick = (id) => {
+    this.setState({ id: id });
+  };
   componentDidMount() {
-    const imgLink = "./img/rock-paper-scissors-hand-icons/";
+    const imgLink = "./img/rps/";
     const images = [
       require(imgLink + "rock-computer.jpg"),
       require(imgLink + "paper-computer.jpg"),
@@ -44,30 +48,30 @@ class App extends Component {
     this.setState({ images: images });
     this.interval = setInterval(() => this.changeImage(), 1000);
   }
-
-  onImgPick = (id) => {
-    this.setState({ id: id });
-  };
-
   componentWillUnmount() {
     if (this.interval) {
       clearInterval(this.interval);
     }
   }
-
   changeImage() {
-    let newCurrentImg = 0;
-    const { images, currentImg } = this.state;
-    const noOfImages = images.length;
-
-    if (currentImg !== noOfImages - 1) {
-      newCurrentImg = currentImg + 1;
+    if (this.state.display) {
+      let newCurrentImg = 0;
+      if (this.state.currentImg !== 2) {
+        newCurrentImg = this.state.currentImg + 1;
+      }
+      this.setState({ currentImg: newCurrentImg });
     }
-
-    this.setState({ currentImg: newCurrentImg });
   }
   render() {
-    const { display, images, currentImg, winner, gameWinner } = this.state;
+    const {
+      display,
+      images,
+      currentImg,
+      winner,
+      gameWinner,
+      id,
+      computer,
+    } = this.state;
     let imgString = images[currentImg];
     let renderGame;
 
@@ -75,27 +79,23 @@ class App extends Component {
       case !display && gameWinner === null && winner === "":
         renderGame = (
           <StartGame
-            onButtonStartGame={() =>
-              this.setState({ display: !this.state.display })
-            }
-            display={this.state.display}
-            countdown={this.state.countdown}
+            onButtonStartGame={() => this.setState({ display: !display })}
           />
         );
         break;
-      case display && winner === "":
+      case display && gameWinner === null && winner === "":
         renderGame = (
           <>
             <ShowPicks
-              display={this.state.display}
-              id={this.state.id}
+              id={id}
               imgString={imgString}
               onImgPick={this.onImgPick}
+              display={display}
+              // onButtonStartRound={this.onButtonStartRound(this.id)}
             />
             <StartRound
               onButtonStartRound={this.onButtonStartRound}
-              display={this.state.display}
-              winner={this.state.winner}
+              winner={winner}
             />
           </>
         );
@@ -103,33 +103,43 @@ class App extends Component {
       case !display && winner !== "" && gameWinner === null:
         renderGame = (
           <>
-            {this.state.winner !== "Nobody" ? (
-              <div id="winner">{this.state.winner} wins this round!</div>
-            ) : (
-              <div id="winner">Nobody wins...</div>
-            )}
-            <button
-              id="nextround"
-              onClick={() =>
+            <NextRound
+              winner={winner}
+              id={id}
+              computer={computer}
+              onclick={() =>
                 this.setState({ display: true, winner: "", id: "" })
               }
-            >
-              Next round
-            </button>
+            />
           </>
         );
         break;
       case !display && gameWinner !== null:
         renderGame = (
-          <div id="winner">
-            And the winner is... <br />
-            {gameWinner}
-          </div>
+          <>
+            <div id="winner">
+              And the winner is... <br />
+              {gameWinner}
+            </div>
+            <button
+              id="playagain"
+              onClick={() => {
+                this.setState({
+                  display: true,
+                  gameWinner: null,
+                  winner: "",
+                  id: "",
+                });
+              }}
+            >
+              <p>Play again</p>
+            </button>
+          </>
         );
         break;
       default:
+        break;
     }
-
     return (
       <>
         <Header />

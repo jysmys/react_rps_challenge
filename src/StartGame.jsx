@@ -5,7 +5,7 @@ const StartGame = (props) => {
     <div>
       <div>
         <p>
-          Click here to start a game against the computer <br /> Best of 5
+          Click here to start a game against the computer <br /> Best of 3
           rounds
         </p>
       </div>
