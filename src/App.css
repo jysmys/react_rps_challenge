@@ -75,3 +75,9 @@ img#scissor {
   align-items: center;
   align-content: center;
 }
+#winner {
+  font-family: "Bangers", cursive;
+  color: #fd2bf1;
+  font-size: 40px;
+  letter-spacing: 0.2em;
+}
