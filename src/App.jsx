@@ -131,6 +131,8 @@ class App extends Component {
         renderGame = (
           <Winner
             gameWinner={gameWinner}
+            playerWins={playerWins}
+            computerWins={computerWins}
             onButtonPlayAgain={() => {
               this.setState({
                 display: true,

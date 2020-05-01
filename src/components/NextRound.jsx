@@ -34,10 +34,10 @@ const NextRound = (props) => {
           Player {props.playerWins} - {props.computerWins} Computer{" "}
         </p>
       </div>
-      <p>Computers pick</p>
-      <img id="roundpick" src={computerImg} alt=".jpg" />
       <p>Players pick</p>
       <img id="roundpick" src={playerImg} alt=".jpg" />
+      <p>Computers pick</p>
+      <img id="roundpick" src={computerImg} alt=".jpg" />
       <button id="nextround" onClick={props.onclick}>
         <p>Next round {props.roundNr + 1}</p>
       </button>
