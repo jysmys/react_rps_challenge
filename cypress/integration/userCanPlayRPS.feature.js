@@ -13,7 +13,7 @@ describe("User can play a game", () => {
     cy.get("img#rock").should("not.be.visible");
     cy.get("img#paper").should("not.be.visible");
   });
-  it("user can start a round and play 3 times", () => {
+  it("user can start a round and play some rounds", () => {
     cy.get("button#startround").click();
     cy.get("div.countdown").should("be.visible");
     cy.get("div#standing").should("be.visible");

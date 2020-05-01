@@ -12,7 +12,7 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./App.css";
 import Winner from "./components/Winner";
-// import CountTimer from "./components/CountTimer";
+
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
@@ -43,6 +43,7 @@ class App extends Component {
       computerWins: wins.computer,
     });
   };
+
   onImgPick = (id) => {
     this.setState({ id: id });
   };
@@ -145,7 +146,6 @@ class App extends Component {
         );
         break;
       default:
-        break;
     }
     return (
       <>
