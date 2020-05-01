@@ -5,11 +5,11 @@ describe("User can play a game", () => {
     cy.get("button#startgame").should("not.be.visible");
   });
   it("user can make a pick", () => {
-    cy.get("img.dynamicImage").should("be.visible");
     cy.get("img#rock").should("be.visible");
     cy.get("img#paper").should("be.visible");
     cy.get("img#scissor").should("be.visible");
     cy.get("img#scissor").click();
+    cy.get("img.dynamicImage").should("be.visible");
     cy.get("img#rock").should("not.be.visible");
     cy.get("img#paper").should("not.be.visible");
   });
