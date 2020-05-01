@@ -12,6 +12,7 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./App.css";
 import Winner from "./components/Winner";
+// import CountTimer from "./components/CountTimer";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
@@ -56,9 +57,7 @@ class App extends Component {
     this.interval = setInterval(() => this.changeImage(), 1000);
   }
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
+    this.interval && clearInterval(this.interval);
   }
   changeImage() {
     if (this.state.display) {

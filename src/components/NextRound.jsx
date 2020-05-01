@@ -1,4 +1,6 @@
-import React from "react";
+//https://codesandbox.io/s/simple-react-countdown-timer-zyfr0?file=/src/index.tsx:32-67
+import React, { useState, useEffect } from "react";
+
 const NextRound = (props) => {
   const imageRock = require("../img/rps/rock-90d.jpg");
   const imagePaper = require("../img/rps/paper-90d.jpg");
@@ -19,16 +21,8 @@ const NextRound = (props) => {
       ? imagePaper
       : imageSciccor;
 
-  return (
+  const showResult = (
     <>
-      {props.winner !== "Nobody" ? (
-        <div id="winner">{props.winner} wins this round!</div>
-      ) : (
-        <div id="winner">
-          Same, same so <br />
-          Nobody wins...
-        </div>
-      )}
       <div id="standing">
         <p>
           Player {props.playerWins} - {props.computerWins} Computer{" "}
@@ -41,6 +35,37 @@ const NextRound = (props) => {
       <button id="nextround" onClick={props.onclick}>
         <p>Next round {props.roundNr + 1}</p>
       </button>
+    </>
+  );
+  const showWinner =
+    props.winner !== "Nobody" ? (
+      <div id="winner">{props.winner} wins this round!</div>
+    ) : (
+      <div id="winner">
+        Same, same so <br />
+        Nobody wins...
+      </div>
+    );
+  const [counter, setCounter] = useState(3);
+  useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
+
+  return (
+    <>
+      {counter !== 0 && (
+        <div className="countdown">
+          <div>{counter}</div>
+        </div>
+      )}
+      {counter === 0 && (
+        <>
+          {showWinner}
+          {showResult}
+        </>
+      )}
     </>
   );
 };
