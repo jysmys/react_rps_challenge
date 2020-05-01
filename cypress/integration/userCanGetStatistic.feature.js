@@ -26,7 +26,7 @@ describe("User can log in and see her statistic", () => {
       cy.get("#password").type("wrongpassword");
       cy.get("button").contains("Submit").click();
     });
-    cy.get("#message").should(
+    cy.get("#errormessage").should(
       "contain",
       "Invalid login credentials. Please try again."
     );

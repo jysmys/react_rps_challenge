@@ -4,6 +4,9 @@
     "email": "user@mail.com",
     "provider": "email",
     "uid": "user@mail.com",
-    "allow_password_change": false
+    "allow_password_change": false,
+    "nr_wins": 3,
+    "nr_lost": 1,
+    "nr_of_play": 4
   }
 }
