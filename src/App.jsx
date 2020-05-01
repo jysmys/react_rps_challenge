@@ -1,38 +1,147 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import StartGame from "./StartGame";
-import StartRound from "./StartRound";
+import StartGame from "./components/StartGame";
+import StartRound from "./components/StartRound";
+import ShowPicks from "./components/ShowPicks";
+import ComputerShuffle from "./components/ComputerShuffle";
+import NextRound from "./components/NextRound";
+import { getComputerChoise } from "./helpers/getComputerChoise";
+import {
+  announceRoundWinner,
+  checkGameWinner,
+} from "./helpers/announceRoundWinner";
 import "./App.css";
+import Winner from "./components/Winner";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   state = {
     display: false,
+    id: "",
+    computer: "",
+    images: [],
+    currentImg: 0,
+    winner: "",
+    gameWin: [],
+    gameWinner: null,
+    playerWins: 0,
+    computerWins: 0,
   };
-  onButtonStartGame = (e) => {
-    e.preventDefault();
-    console.log("Starta spelet");
-    this.setState({ display: !this.state.display });
+  onButtonStartRound = () => {
+    const computer = getComputerChoise();
+    const roundWinner = announceRoundWinner(this.state.id, computer);
+    const wins = checkGameWinner(roundWinner, this.state.gameWin);
+    this.setState({
+      display: false,
+      counter: this.state.counter,
+      winner: roundWinner,
+      gameWinner: wins.gamewinner,
+      computer: computer,
+      playerWins: wins.player,
+      computerWins: wins.computer,
+    });
   };
-  onButtonStartRound = (e) => {
-    e.preventDefault();
-    console.log("Starta round");
-    // this.setState({ display: !this.state.display });
+  onImgPick = (id) => {
+    this.setState({ id: id });
   };
-
+  componentDidMount() {
+    const imgLink = "./img/rps/";
+    const images = [
+      require(imgLink + "rock-computer.jpg"),
+      require(imgLink + "paper-computer.jpg"),
+      require(imgLink + "scissors-computer.jpg"),
+    ];
+    this.setState({ images: images });
+    this.interval = setInterval(() => this.changeImage(), 1000);
+  }
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+  }
+  changeImage() {
+    if (this.state.display) {
+      let newCurrentImg = 0;
+      if (this.state.currentImg !== 2) {
+        newCurrentImg = this.state.currentImg + 1;
+      }
+      this.setState({ currentImg: newCurrentImg });
+    }
+  }
   render() {
+    const {
+      display,
+      images,
+      currentImg,
+      winner,
+      gameWinner,
+      id,
+      computer,
+      playerWins,
+      computerWins,
+    } = this.state;
+    let imgString = images[currentImg];
+    let renderGame;
+
+    switch (true) {
+      case !display && gameWinner === null && winner === "":
+        renderGame = (
+          <StartGame
+            onButtonStartGame={() => this.setState({ display: !display })}
+          />
+        );
+        break;
+      case display && gameWinner === null && winner === "":
+        renderGame = (
+          <>
+            <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
+            {id !== "" && <ComputerShuffle imgString={imgString} />}
+            <StartRound
+              onButtonStartRound={this.onButtonStartRound}
+              winner={winner}
+            />
+          </>
+        );
+        break;
+      case !display && winner !== "" && gameWinner === null:
+        renderGame = (
+          <>
+            <NextRound
+              winner={winner}
+              id={id}
+              computer={computer}
+              playerWins={playerWins}
+              computerWins={computerWins}
+              onclick={() =>
+                this.setState({ display: true, winner: "", id: "" })
+              }
+            />
+          </>
+        );
+        break;
+      case !display && gameWinner !== null:
+        renderGame = (
+          <Winner
+            gameWinner={gameWinner}
+            onButtonPlayAgain={() => {
+              this.setState({
+                display: true,
+                gameWinner: null,
+                winner: "",
+                id: "",
+              });
+            }}
+          />
+        );
+        break;
+      default:
+        break;
+    }
     return (
-      <div>
+      <>
         <Header />
-        <StartGame
-          onButtonStartGame={this.onButtonStartGame}
-          display={this.state.display}
-        />
-        <StartRound
-          onButtonStartGame={this.onButtonStartRound}
-          display={this.state.display}
-        />
-      </div>
+        <div className="game">{renderGame}</div>
+      </>
     );
   }
 }
