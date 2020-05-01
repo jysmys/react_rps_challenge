@@ -3,6 +3,7 @@ import Header from "./Header";
 import StartGame from "./components/StartGame";
 import StartRound from "./components/StartRound";
 import ShowPicks from "./components/ShowPicks";
+import ComputerShuffle from "./components/ComputerShuffle";
 import NextRound from "./components/NextRound";
 import { getComputerChoise } from "./helpers/getComputerChoise";
 import {
@@ -30,7 +31,6 @@ class App extends Component {
     const computer = getComputerChoise();
     const roundWinner = announceRoundWinner(this.state.id, computer);
     const wins = checkGameWinner(roundWinner, this.state.gameWin);
-    console.log(wins);
     this.setState({
       display: false,
       counter: this.state.counter,
@@ -94,13 +94,8 @@ class App extends Component {
       case display && gameWinner === null && winner === "":
         renderGame = (
           <>
-            <ShowPicks
-              id={id}
-              imgString={imgString}
-              onImgPick={this.onImgPick}
-              display={display}
-              // onButtonStartRound={this.onButtonStartRound(this.id)}
-            />
+            <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
+            {id !== "" && <ComputerShuffle imgString={imgString} />}
             <StartRound
               onButtonStartRound={this.onButtonStartRound}
               winner={winner}
@@ -126,7 +121,8 @@ class App extends Component {
         break;
       case !display && gameWinner !== null:
         renderGame = (
-          <Winner gameWinner={gameWinner}
+          <Winner
+            gameWinner={gameWinner}
             onButtonPlayAgain={() => {
               this.setState({
                 display: true,

@@ -11,10 +11,6 @@ const ShowPicks = (props) => {
 
   return (
     <div>
-      <div className="computerspick" id="computer">
-        <p>Computers pick ???</p>
-        <img className="dynamicImage" src={props.imgString} alt=".jpg" />
-      </div>
       <p>Take your pick</p>
       <button
         className="imgbutton"
