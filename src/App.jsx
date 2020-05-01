@@ -35,6 +35,7 @@ class App extends Component {
       display: false,
       counter: this.state.counter,
       winner: roundWinner,
+      gameWin: wins.gameWin,
       gameWinner: wins.gamewinner,
       computer: computer,
       playerWins: wins.player,
@@ -74,6 +75,7 @@ class App extends Component {
       images,
       currentImg,
       winner,
+      gameWin,
       gameWinner,
       id,
       computer,
@@ -95,11 +97,16 @@ class App extends Component {
         renderGame = (
           <>
             <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
-            {id !== "" && <ComputerShuffle imgString={imgString} />}
-            <StartRound
-              onButtonStartRound={this.onButtonStartRound}
-              winner={winner}
-            />
+            {id !== "" && (
+              <>
+                <ComputerShuffle imgString={imgString} />
+                <StartRound
+                  onButtonStartRound={this.onButtonStartRound}
+                  winner={winner}
+                  roundNr={gameWin.length + 1}
+                />
+              </>
+            )}
           </>
         );
         break;
@@ -109,6 +116,7 @@ class App extends Component {
             <NextRound
               winner={winner}
               id={id}
+              roundNr={gameWin.length}
               computer={computer}
               playerWins={playerWins}
               computerWins={computerWins}
@@ -123,11 +131,14 @@ class App extends Component {
         renderGame = (
           <Winner
             gameWinner={gameWinner}
+            playerWins={playerWins}
+            computerWins={computerWins}
             onButtonPlayAgain={() => {
               this.setState({
                 display: true,
                 gameWinner: null,
                 winner: "",
+                gameWin: [],
                 id: "",
               });
             }}

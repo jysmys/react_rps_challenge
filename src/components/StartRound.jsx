@@ -4,7 +4,7 @@ const StartRound = (props) => {
   return (
     <div className="startround">
       <button id="startround" onClick={props.onButtonStartRound}>
-        <p id="roundbutton">Start round</p>
+        <p id="roundbutton">Start round {props.roundNr}</p>
       </button>
     </div>
   );

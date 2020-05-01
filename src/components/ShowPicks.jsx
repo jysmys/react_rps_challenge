@@ -11,7 +11,7 @@ const ShowPicks = (props) => {
 
   return (
     <div>
-      <p>Take your pick</p>
+      {props.id === "" ? <p>Take your pick</p> : <p>Your pick</p>}
       <button
         className="imgbutton"
         id="rock"
