@@ -18,7 +18,7 @@ const NextRound = (props) => {
       : props.id === "paper"
       ? imagePaper
       : imageSciccor;
-  console.log(computerImg + "  " + playerImg);
+
   return (
     <>
       {props.winner !== "Nobody" ? (
@@ -31,8 +31,7 @@ const NextRound = (props) => {
       )}
       <div id="standing">
         <p>
-          Standing
-          <br /> Player {props.playerWins} - {props.computerWins} Computer{" "}
+          Player {props.playerWins} - {props.computerWins} Computer{" "}
         </p>
       </div>
       <p>Computers pick</p>
@@ -40,7 +39,7 @@ const NextRound = (props) => {
       <p>Players pick</p>
       <img id="roundpick" src={playerImg} alt=".jpg" />
       <button id="nextround" onClick={props.onclick}>
-        <p>Next round</p>
+        <p>Next round {props.roundNr + 1}</p>
       </button>
     </>
   );

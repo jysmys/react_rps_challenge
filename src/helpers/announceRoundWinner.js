@@ -29,7 +29,7 @@ export const checkGameWinner = (roundWinner, gameWin) => {
   let player = 0;
   let computer = 0;
   gameWin.push(
-    roundWinner === "Player" ? 1 : roundWinner === "Computer" ? 0 : null
+    roundWinner === "Player" ? 1 : roundWinner === "Computer" ? 0 : "X"
   );
   gameWin.forEach((i) => {
     i === 1 && player++;
@@ -37,5 +37,5 @@ export const checkGameWinner = (roundWinner, gameWin) => {
   });
   const gamewinner =
     player === 2 ? "Player" : computer === 2 ? "Computer" : null;
-  return { gamewinner, player, computer };
+  return { gamewinner, player, computer, gameWin };
 };
