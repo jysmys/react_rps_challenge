@@ -7,8 +7,7 @@ const authenticate = async (email, password) => {
       password: password,
     });
     await storeAuthCredentials(response);
-    await storeBody(response)
-    return { authenticated: true };
+    return { authenticated: true, data: response.data };
   } catch (error) {
     return { authenticated: false, message: error.response.data.errors };
   }

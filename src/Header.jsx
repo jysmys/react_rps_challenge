@@ -7,6 +7,10 @@ class Header extends Component {
     renderLoginForm: false,
     authenticated: false,
     message: "",
+    name: "",
+    wins: 0,
+    lost: 0,
+    played: 0,
   };
 
   onLogin = async (e) => {
@@ -16,7 +20,7 @@ class Header extends Component {
       e.target.password.value
     );
     if (response.authenticated) {
-      this.setState({ authenticated: true });
+      this.setState({ authenticated: true, player: response.data.data.name });
     } else {
       this.setState({ message: response.message, renderLoginForm: false });
     }
@@ -24,7 +28,7 @@ class Header extends Component {
   render() {
     const { renderLoginForm, authenticated, message } = this.state;
     return (
-      <>
+      <div>
         <nav>
           <h1 id="header">Rock - Paper - Scissor</h1>
         </nav>
@@ -34,9 +38,10 @@ class Header extends Component {
         >
           Login
         </button>
-        {renderLoginForm && (
+        {renderLoginForm && !authenticated && (
           <>
             <LoginForm submitFormHandler={this.onLogin} />
+            <p id="errormessage">{message}</p>
           </>
         )}
         {authenticated && (
@@ -44,8 +49,7 @@ class Header extends Component {
             Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
           </p>
         )}
-        <p id="errormessage">{message}</p>
-      </>
+      </div>
     );
   }
 }
