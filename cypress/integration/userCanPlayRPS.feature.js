@@ -15,12 +15,14 @@ describe("User can play a game", () => {
   });
   it("user can start a round and play 3 times", () => {
     cy.get("button#startround").click();
+    cy.get("div.countdown").should("be.visible");
+    cy.get("div#standing").should("be.visible");
     cy.get("div#winner").should("be.visible");
     cy.get("button#nextround").click();
     cy.get("img#rock").should("be.visible");
     cy.get("img#rock").click();
     cy.get("button#startround").click();
+    cy.get("div.countdown").should("be.visible");
     cy.get("div#winner").should("be.visible");
   });
 });
-// cy.get("div.roundwinner").should("be.visible");
