@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/ShowPicks.css";
 
 const ShowPicks = (props) => {
   const imageRock = require("../img/rps/rock.jpg");

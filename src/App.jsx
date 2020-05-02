@@ -10,8 +10,9 @@ import {
   announceRoundWinner,
   checkGameWinner,
 } from "./helpers/announceRoundWinner";
-import "./App.css";
+import "./css/App.css";
 import Winner from "./components/Winner";
+import { Segment } from "semantic-ui-react";
 // import CountTimer from "./components/CountTimer";
 // import { Switch, Route, BrowserRouter } from "react-router-dom";
 
@@ -150,7 +151,9 @@ class App extends Component {
     return (
       <>
         <Header />
-        <div className="game">{renderGame}</div>
+        <Segment centered className="game">
+          {renderGame}
+        </Segment>
       </>
     );
   }
