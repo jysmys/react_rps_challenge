@@ -10,10 +10,9 @@ import {
   announceRoundWinner,
   checkGameWinner,
 } from "./helpers/announceRoundWinner";
-import "./App.css";
+import "./css/App.css";
 import Winner from "./components/Winner";
 
-// import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -95,7 +94,7 @@ class App extends Component {
         break;
       case display && gameWinner === null && winner === "":
         renderGame = (
-          <>
+          <div id="showpicks">
             <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
             {id !== "" && (
               <>
@@ -107,7 +106,7 @@ class App extends Component {
                 />
               </>
             )}
-          </>
+          </div>
         );
         break;
       case !display && winner !== "" && gameWinner === null:
@@ -149,7 +148,7 @@ class App extends Component {
     }
     return (
       <>
-        <Header name={this.state.name} />
+        <Header />
         <div className="game">{renderGame}</div>
       </>
     );

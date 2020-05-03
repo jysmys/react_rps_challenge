@@ -1,9 +1,10 @@
 import React from "react";
+import "../css/ComputerShuffle.css";
 
 const ComputerShuffle = (props) => {
   return (
     <div className="computerspick" id="computer">
-      <p>Computers pick ???</p>
+      <h6>Computers pick ???</h6>
       <img className="dynamicImage" src={props.imgString} alt=".jpg" />
     </div>
   );

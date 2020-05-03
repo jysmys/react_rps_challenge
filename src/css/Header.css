@@ -1,0 +1,9 @@
+nav {
+  text-align: center;
+}
+#header {
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 100%;
+  padding-top: 30px;
+}

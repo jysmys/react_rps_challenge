@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./helpers/auth";
 import ShowScore from "./components/ShowScore";
-// import HighScore from "./components/HighScore";
+import { Segment } from "semantic-ui-react";
+import "./css/Header.css";
 
 class Header extends Component {
   state = {
@@ -30,7 +31,7 @@ class Header extends Component {
   render() {
     const { renderLoginForm, authenticated, message } = this.state;
     return (
-      <div>
+      <div id="header">
         <nav>
           <h1 id="header">Rock - Paper - Scissor</h1>
         </nav>
@@ -59,4 +60,5 @@ class Header extends Component {
     );
   }
 }
+
 export default Header;

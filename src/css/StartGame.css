@@ -1,0 +1,23 @@
+div {
+  padding: 1em;
+}
+#startgame {
+  margin: 0 auto;
+  display: block;
+  letter-spacing: 0.1em;
+  background-color: #2cdfba;
+  border-radius: 5px;
+  border-color: #165dd6;
+  padding: 15px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 8px 15px #209981;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.button:hover {
+  background-color: #2ee59d;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  transform: translateY(-7px);
+}

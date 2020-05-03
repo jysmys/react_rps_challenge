@@ -1,0 +1,21 @@
+.imgbutton {
+  border: none;
+  outline: none;
+  border-width: 0;
+  padding: 0;
+  margin: 0;
+  width: 150px;
+  height: 240px;
+  cursor: pointer;
+  background-color: #26006e;
+  padding: 20px;
+}
+.imgbutton:hover {
+  transform: translateY(-7px);
+}
+img#rock,
+img#paper,
+img#scissor {
+  width: inherit;
+  height: inherit;
+}
