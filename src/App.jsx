@@ -27,7 +27,6 @@ class App extends Component {
     gameWinner: null,
     playerWins: 0,
     computerWins: 0,
-    name: "",
   };
   onButtonStartRound = () => {
     const computer = getComputerChoise();

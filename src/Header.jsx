@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./helpers/auth";
+import ShowScore from "./components/ShowScore";
+// import HighScore from "./components/HighScore";
 
 class Header extends Component {
   state = {
@@ -46,7 +48,13 @@ class Header extends Component {
             <p id="errormessage">{message}</p>
           </>
         )}
-        {authenticated && <p id="message">Hi {this.state.name}</p>}
+        {authenticated && (
+          <div>
+            <p id="message">Hi {this.state.name}</p>
+            <ShowScore />
+            {/* <HighScore /> */}
+          </div>
+        )}
       </div>
     );
   }
