@@ -20,7 +20,7 @@ class Header extends Component {
       e.target.password.value
     );
     if (response.authenticated) {
-      this.setState({ authenticated: true, player: response.data.data.name });
+      this.setState({ authenticated: true, name: response.data.data.name });
     } else {
       this.setState({ message: response.message, renderLoginForm: false });
     }
@@ -32,23 +32,21 @@ class Header extends Component {
         <nav>
           <h1 id="header">Rock - Paper - Scissor</h1>
         </nav>
-        <button
-          id="login"
-          onClick={() => this.setState({ renderLoginForm: true })}
-        >
-          Login
-        </button>
+        {!renderLoginForm && !authenticated && (
+          <button
+            id="login"
+            onClick={() => this.setState({ renderLoginForm: true })}
+          >
+            Login
+          </button>
+        )}
         {renderLoginForm && !authenticated && (
           <>
             <LoginForm submitFormHandler={this.onLogin} />
             <p id="errormessage">{message}</p>
           </>
         )}
-        {authenticated && (
-          <p id="message">
-            Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
-          </p>
-        )}
+        {authenticated && <p id="message">Hi {this.state.name}</p>}
       </div>
     );
   }

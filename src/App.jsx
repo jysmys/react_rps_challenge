@@ -27,6 +27,7 @@ class App extends Component {
     gameWinner: null,
     playerWins: 0,
     computerWins: 0,
+    name: "",
   };
   onButtonStartRound = () => {
     const computer = getComputerChoise();
@@ -149,7 +150,7 @@ class App extends Component {
     }
     return (
       <>
-        <Header />
+        <Header name={this.state.name} />
         <div className="game">{renderGame}</div>
       </>
     );
