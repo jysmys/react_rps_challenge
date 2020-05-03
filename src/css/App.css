@@ -3,45 +3,12 @@
 body {
   background-color: #26006e;
 }
-/* footer {
-  padding-top: 50px;
-} */
-/* nav {
+div#showpicks {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.game {
-  display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  padding-bottom: 20px;
-  /* align-items: center; */
-/* }
-.game > *,
-#starttext {
+  justify-content: center;
   align-items: center;
-  align-content: center;
-  flex: 0 0 calc(46.66% - 20px);
 }
-#startgamepage {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex: 0 0 calc(100% - 20px);
-}  */
-/* #startgamepage,
-#starttext,
-#takeyourpick {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-  padding-bottom: 20px;
-}
-.startround {
-  padding-top: 50px;
-} */
 h1 {
   font-family: "Bangers", cursive;
   color: #fd2bf1;
@@ -97,11 +64,7 @@ p {
   height: 50px;
   padding-left: 40%;
 } */
-/* .countdown {
-  color: #2cdfba;
-  font-size: 100px;
-  font-weight: 900;
-}
+/*
 p#startbutton,
 p#roundbutton {
   font-family: "Bangers", cursive;
@@ -126,13 +89,6 @@ img#paper,
 img#scissor {
   width: inherit;
   height: inherit;
-}
-.dynamicImage {
-  width: 130px;
-  height: 220px;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 #winner {
   font-family: "Bangers", cursive;

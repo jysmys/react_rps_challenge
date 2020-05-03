@@ -11,32 +11,27 @@ const ShowPicks = (props) => {
   const displayScissor = props.id === "scissor" || (props.id === "" && true);
 
   return (
-    <div>
-      {props.id === "" ? <p>Take your pick</p> : <p>Your pick</p>}
-      <button
-        className="imgbutton"
-        id="rock"
-        onClick={handleClick}
-        style={{ display: !displayRock && "none" }}
-      >
-        <img id="rock" src={imageRock} alt="rock.jpg" />
-      </button>
-      <button
-        className="imgbutton"
-        id="paper"
-        onClick={handleClick}
-        style={{ display: !displayPaper && "none" }}
-      >
-        <img id="paper" src={imagePaper} alt="paper.jpg" />
-      </button>
-      <button
-        className="imgbutton"
-        id="scissor"
-        onClick={handleClick}
-        style={{ display: !displayScissor && "none" }}
-      >
-        <img id="scissor" src={imageSciccor} alt="scissors.jpg" />
-      </button>
+    <div id="showpick">
+      <div id="yourpick">
+        {props.id === "" ? <h6>Take your pick</h6> : <h6>Your pick</h6>}
+      </div>
+      {/* <div id="buttonpick"> */}
+      {displayRock && (
+        <button className="imgbutton" id="rock" onClick={handleClick}>
+          <img id="rock" src={imageRock} alt="rock.jpg" />
+        </button>
+      )}
+      {displayPaper && (
+        <button className="imgbutton" id="paper" onClick={handleClick}>
+          <img id="paper" src={imagePaper} alt="paper.jpg" />
+        </button>
+      )}
+      {displayScissor && (
+        <button className="imgbutton" id="scissor" onClick={handleClick}>
+          <img id="scissor" src={imageSciccor} alt="scissors.jpg" />
+        </button>
+      )}
+      {/* </div> */}
     </div>
   );
 };

@@ -95,7 +95,7 @@ class App extends Component {
         break;
       case display && gameWinner === null && winner === "":
         renderGame = (
-          <>
+          <div id="showpicks">
             <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
             {id !== "" && (
               <>
@@ -107,7 +107,7 @@ class App extends Component {
                 />
               </>
             )}
-          </>
+          </div>
         );
         break;
       case !display && winner !== "" && gameWinner === null:

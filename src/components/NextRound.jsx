@@ -1,6 +1,7 @@
 //https://codesandbox.io/s/simple-react-countdown-timer-zyfr0?file=/src/index.tsx:32-67
 import React, { useState, useEffect } from "react";
 import { show } from "./showResultAndWinner";
+import "../css/NextRound.css";
 
 const NextRound = (props) => {
   const { showWinner, showResult } = show(
@@ -20,19 +21,15 @@ const NextRound = (props) => {
   }, [counter]);
 
   return (
-    <>
-      {counter !== 0 && (
-        <div className="countdown">
-          <div>{counter}</div>
-        </div>
-      )}
+    <div id="nextround">
+      {counter !== 0 && <div className="countdown">{counter}</div>}
       {counter === 0 && (
-        <>
+        <div id="winner">
           {showWinner}
           {showResult}
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 export default NextRound;
