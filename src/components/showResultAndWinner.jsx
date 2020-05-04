@@ -27,14 +27,20 @@ export const show = (
   const showResult = (
     <>
       <div id="standing">
-        <p>
+        <h6>
           Player {playerWins} - {computerWins} Computer{" "}
-        </p>
+        </h6>
       </div>
-      <p>Players pick</p>
-      <img id="roundpick" src={playerImg} alt=".jpg" />
-      <p>Computers pick</p>
-      <img id="roundpick" src={computerImg} alt=".jpg" />
+      <div id="winner">
+        <div id="playerpick">
+          <h6>Player</h6>
+          <img id="roundpick" src={playerImg} alt=".jpg" />
+        </div>
+        <div id="computerpick">
+          <h6>Computer</h6>
+          <img id="roundpick" src={computerImg} alt=".jpg" />
+        </div>
+      </div>
       <button id="nextround" onClick={onclick}>
         <p>Next round {roundNr + 1}</p>
       </button>
@@ -42,11 +48,15 @@ export const show = (
   );
   const showWinner =
     winner !== "Nobody" ? (
-      <div id="winner">{winner} wins this round!</div>
+      <div id="winner">
+        <h5>{winner} wins this round!</h5>
+      </div>
     ) : (
       <div id="winner">
-        Same, same so <br />
-        Nobody wins...
+        <h5>
+          Same, same so <br />
+          Nobody wins...
+        </h5>
       </div>
     );
   return { showResult, showWinner };

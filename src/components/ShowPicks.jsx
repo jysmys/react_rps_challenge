@@ -15,7 +15,6 @@ const ShowPicks = (props) => {
       <div id="yourpick">
         {props.id === "" ? <h6>Take your pick</h6> : <h6>Your pick</h6>}
       </div>
-      {/* <div id="buttonpick"> */}
       {displayRock && (
         <button className="imgbutton" id="rock" onClick={handleClick}>
           <img id="rock" src={imageRock} alt="rock.jpg" />
@@ -31,7 +30,6 @@ const ShowPicks = (props) => {
           <img id="scissor" src={imageSciccor} alt="scissors.jpg" />
         </button>
       )}
-      {/* </div> */}
     </div>
   );
 };

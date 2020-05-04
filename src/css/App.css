@@ -3,7 +3,8 @@
 body {
   background-color: #26006e;
 }
-div#showpicks {
+div#showpicks,
+div#winner {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,7 +18,7 @@ h1 {
 }
 h6 {
   font-family: "Bangers", cursive;
-  color: #3278ed;
+  color: #2cdfba;
   font-size: 30px;
   letter-spacing: 0.2em;
   text-align: center;

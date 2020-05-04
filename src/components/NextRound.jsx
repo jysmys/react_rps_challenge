@@ -24,10 +24,10 @@ const NextRound = (props) => {
     <div id="nextround">
       {counter !== 0 && <div className="countdown">{counter}</div>}
       {counter === 0 && (
-        <div id="winner">
+        <>
           {showWinner}
           {showResult}
-        </div>
+        </>
       )}
     </div>
   );

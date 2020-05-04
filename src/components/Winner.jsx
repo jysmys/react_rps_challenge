@@ -1,20 +1,21 @@
 //https://codesandbox.io/s/simple-react-countdown-timer-zyfr0?file=/src/index.tsx:32-67
 import React, { useState, useEffect } from "react";
+import "../css/Winner.css";
 
 const Winner = (props) => {
   const winner = (
     <>
       <div id="standing">
-        <p>
+        <h5>
           Player {props.playerWins} - {props.computerWins} Computer{" "}
-        </p>
+        </h5>
       </div>
       <div id="winner">
         And the winner is... <br />
         {props.gameWinner}
       </div>
       <button id="playagain" onClick={props.onButtonPlayAgain}>
-        <p>Play again</p>
+        <p>Play again ?</p>
       </button>
     </>
   );

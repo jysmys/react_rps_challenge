@@ -6,7 +6,7 @@ const StartGame = (props) => {
   return (
     <Grid centered>
       <Grid.Column>
-        <h5>Click here to start a game against the computer</h5>
+        <h5>Start game against the computer</h5>
       </Grid.Column>
       <Grid.Column>
         <h6>Best of 3 rounds</h6>
