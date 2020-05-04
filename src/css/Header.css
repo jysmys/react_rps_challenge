@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
 nav {
   text-align: center;
 }
@@ -6,4 +8,42 @@ nav {
   align-items: center;
   flex: 0 0 100%;
   padding-top: 30px;
+}
+button#login,
+button#submit {
+  background-color: #26006e;
+  color: #fd2bf1;
+  border: 0;
+  font-size: 25px;
+  font-family: "Permanent Marker", cursive;
+  letter-spacing: 0.1em;
+  width: 50px;
+  height: 20px;
+  cursor: pointer;
+}
+.imgbutton:hover {
+  transform: translateY(-7px);
+}
+#login-form {
+  color: #fd2bf1;
+  font-size: 20px;
+  padding-left: 50px;
+  font-family: "Permanent Marker", cursive;
+}
+label {
+  padding-left: 20px;
+  padding-right: 10px;
+  height: 25px;
+}
+input {
+  padding-left: 20px;
+  padding-right: 10px;
+  height: 25px;
+  color: #26006e;
+  border: 0;
+  font-size: 15px;
+  font-family: "Permanent Marker", cursive;
+}
+button#login:hover {
+  text-decoration: underline;
 }

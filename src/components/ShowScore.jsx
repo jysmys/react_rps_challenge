@@ -45,9 +45,9 @@ class ShowScore extends Component {
     this.state.fetched &&
       (userScore = (
         <div id="scores">
-          <p>Wins: {this.state.userscore.nr_wins}</p>
-          <p>Lost: {this.state.userscore.nr_lost}</p>
-          <p>Games played: {this.state.userscore.nr_of_play}</p>
+          <h6>Wins: {this.state.userscore.nr_wins}</h6>
+          <h6>Lost: {this.state.userscore.nr_lost}</h6>
+          <h6>Games played: {this.state.userscore.nr_of_play}</h6>
         </div>
       ));
     return <div>{userScore}</div>;

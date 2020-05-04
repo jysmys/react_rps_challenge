@@ -1,21 +1,37 @@
 import React, { Component } from "react";
 import LoginForm from "./components/LoginForm";
-import { authenticate } from "./helpers/auth";
+import SignUpForm from "./components/SignUpForm";
+import { authenticate} from "./helpers/auth";
+import { registration } from "./helpers/registration";
 import ShowScore from "./components/ShowScore";
-import { Segment } from "semantic-ui-react";
+// import { Menu } from "semantic-ui-react";
 import "./css/Header.css";
 
 class Header extends Component {
   state = {
     renderLoginForm: false,
+    renderSignUpForm: false,
     authenticated: false,
     message: "",
     name: "",
-    wins: 0,
-    lost: 0,
-    played: 0,
   };
-
+  onSignup = async (e) => {
+    e.preventDefault();
+    const response = await registration(
+      e.target.name.value,
+      e.target.email.value,
+      e.target.password.value,
+      e.target.passwordConfirm.value
+    );
+    if (response.authenticated) {
+      this.setState({ name: response.data.data.name }, () =>
+        this.props.onAuthenticate()
+      );
+      this.props.name = this.state.name;
+    } else {
+      this.setState({ message: response.message, renderLoginForm: false });
+    }
+  };
   onLogin = async (e) => {
     e.preventDefault();
     const response = await authenticate(
@@ -23,18 +39,23 @@ class Header extends Component {
       e.target.password.value
     );
     if (response.authenticated) {
-      this.setState({ authenticated: true, name: response.data.data.name });
+      this.setState({ name: response.data.data.name }, () =>
+        this.props.onAuthenticate()
+      );
+      this.props.name = this.state.name;
     } else {
       this.setState({ message: response.message, renderLoginForm: false });
     }
   };
   render() {
-    const { renderLoginForm, authenticated, message } = this.state;
+    const {
+      renderSignUpForm,
+      renderLoginForm,
+      authenticated,
+      message,
+    } = this.state;
     return (
       <div id="header">
-        <nav>
-          <h1 id="header">Rock - Paper - Scissor</h1>
-        </nav>
         {!renderLoginForm && !authenticated && (
           <button
             id="login"
@@ -49,6 +70,20 @@ class Header extends Component {
             <p id="errormessage">{message}</p>
           </>
         )}
+        {!renderSignUpForm && !authenticated && (
+          <button
+            id="signup"
+            onClick={() => this.setState({ renderSignUpForm: true })}
+          >
+            Signup
+          </button>
+        )}
+        {renderSignUpForm && !authenticated && (
+          <>
+            <SignUpForm submitFormHandler={this.onSignup} />
+            <p id="errormessage">{message}</p>
+          </>
+        )}
         {authenticated && (
           <div>
             <p id="message">Hi {this.state.name}</p>
@@ -56,6 +91,9 @@ class Header extends Component {
             {/* <HighScore /> */}
           </div>
         )}
+        <nav>
+          <h1 id="header">Rock - Paper - Scissor</h1>
+        </nav>
       </div>
     );
   }

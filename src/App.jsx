@@ -13,7 +13,6 @@ import {
 import "./css/App.css";
 import Winner from "./components/Winner";
 
-
 class App extends Component {
   state = {
     display: false,
@@ -26,7 +25,10 @@ class App extends Component {
     gameWinner: null,
     playerWins: 0,
     computerWins: 0,
+    authenticated: false,
+    name: "",
   };
+
   onButtonStartRound = () => {
     const computer = getComputerChoise();
     const roundWinner = announceRoundWinner(this.state.id, computer);
@@ -45,6 +47,9 @@ class App extends Component {
 
   onImgPick = (id) => {
     this.setState({ id: id });
+  };
+  onName = (name) => {
+    this.setState({ name: name });
   };
   componentDidMount() {
     const imgLink = "./img/rps/";
@@ -148,7 +153,12 @@ class App extends Component {
     }
     return (
       <>
-        <Header />
+        <Header
+          onAuthenticate={() => {
+            this.setState({ authenticated: true });
+          }}
+          name={this.onName}
+        />
         <div className="game">{renderGame}</div>
       </>
     );
