@@ -4,7 +4,7 @@ import { show } from "./showResultAndWinner";
 import "../css/NextRound.css";
 
 const NextRound = (props) => {
-  const { showWinner, showResult } = show(
+  const { showWinner, showNextRound, showResult } = show(
     props.playerWins,
     props.computerWins,
     props.onclick,
@@ -22,11 +22,12 @@ const NextRound = (props) => {
 
   return (
     <div id="nextround">
-      {counter !== 0 && <div className="countdown">{counter}</div>}
+      {counter !== 0 && <h4 className="countdown">{counter}</h4>}
       {counter === 0 && (
         <>
           {showWinner}
           {showResult}
+          {showNextRound}
         </>
       )}
     </div>

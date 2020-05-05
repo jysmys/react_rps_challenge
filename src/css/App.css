@@ -11,7 +11,7 @@ div#winner {
   align-items: center;
 }
 h1 {
-  font-family: "Bangers", cursive;
+  font-family: "Bangers", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #fd2bf1;
   font-size: 60px;
   letter-spacing: 0.2em;
@@ -34,8 +34,8 @@ h5 {
 }
 h4 {
   font-family: "Bangers", cursive;
-  color: #3278ed;
-  font-size: 35px;
+  color: #fd2bf1;
+  font-size: 45px;
   letter-spacing: 0.2em;
   text-align: center;
   margin: 0;
@@ -48,56 +48,3 @@ p {
   text-align: center;
   margin: 0;
 }
-/* button p {
-  font-family: "Bangers", cursive;
-  color: #26006e;
-  font-size: 30px;
-  letter-spacing: 0.2em;
-} */
-/* #footer {
-  font-family: "Bangers", cursive;
-  color: #3278ed;
-  font-size: 20px;
-  letter-spacing: 0.2em;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  padding-left: 40%;
-} */
-/*
-p#startbutton,
-p#roundbutton {
-  font-family: "Bangers", cursive;
-  color: #2cdfba;
-  font-size: 25px;
-}
-*/
-/* button#startgame,
-button#startround,
-button#nextround {
-  background-color: #3278ed;
-  border-radius: 5px;
-  border-color: #165dd6;
-  border-width: 5px;
-  letter-spacing: 0.1em;
-  height: 80px;
-} */
-/*
-
-img#rock,
-img#paper,
-img#scissor {
-  width: inherit;
-  height: inherit;
-}
-#winner {
-  font-family: "Bangers", cursive;
-  color: #2cdfba;
-  font-size: 40px;
-  letter-spacing: 0.2em;
-}
-#roundpick {
-  width: 180px;
-  height: 150px;
-} */

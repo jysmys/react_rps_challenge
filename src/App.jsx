@@ -13,8 +13,6 @@ import {
 import "./css/App.css";
 import Winner from "./components/Winner";
 import { Segment } from "semantic-ui-react";
-// import CountTimer from "./components/CountTimer";
-// import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -24,7 +22,6 @@ class App extends Component {
     images: [],
     currentImg: 0,
     winner: "",
-    gameWin: [],
     gameWinner: null,
     playerWins: 0,
     computerWins: 0,
@@ -32,16 +29,19 @@ class App extends Component {
   onButtonStartRound = () => {
     const computer = getComputerChoise();
     const roundWinner = announceRoundWinner(this.state.id, computer);
-    const wins = checkGameWinner(roundWinner, this.state.gameWin);
+    const wins = checkGameWinner(
+      roundWinner,
+      this.state.playerWins,
+      this.state.computerWins
+    );
     this.setState({
       display: false,
       counter: this.state.counter,
       winner: roundWinner,
-      gameWin: wins.gameWin,
-      gameWinner: wins.gamewinner,
+      gameWinner: wins.gameWinner,
       computer: computer,
-      playerWins: wins.player,
-      computerWins: wins.computer,
+      playerWins: wins.playerWins,
+      computerWins: wins.computerWins,
     });
   };
   onImgPick = (id) => {
@@ -75,7 +75,6 @@ class App extends Component {
       images,
       currentImg,
       winner,
-      gameWin,
       gameWinner,
       id,
       computer,
@@ -84,7 +83,7 @@ class App extends Component {
     } = this.state;
     let imgString = images[currentImg];
     let renderGame;
-
+    let roundNr = playerWins + computerWins + 1;
     switch (true) {
       case !display && gameWinner === null && winner === "":
         renderGame = (
@@ -103,7 +102,7 @@ class App extends Component {
                 <StartRound
                   onButtonStartRound={this.onButtonStartRound}
                   winner={winner}
-                  roundNr={gameWin.length + 1}
+                  roundNr={roundNr}
                 />
               </>
             )}
@@ -116,7 +115,7 @@ class App extends Component {
             <NextRound
               winner={winner}
               id={id}
-              roundNr={gameWin.length}
+              roundNr={roundNr}
               computer={computer}
               playerWins={playerWins}
               computerWins={computerWins}
@@ -138,7 +137,6 @@ class App extends Component {
                 display: true,
                 gameWinner: null,
                 winner: "",
-                gameWin: [],
                 id: "",
               });
             }}

@@ -23,12 +23,14 @@ export const show = (
       : cimageSciccor;
   let playerImg =
     id === "rock" ? imageRock : id === "paper" ? imagePaper : imageSciccor;
+  let countRound =
+    winner !== "Nobody" ? `Next round ${roundNr}` : `Replay round ${roundNr}`;
 
   const showResult = (
     <>
       <div id="standing">
         <h6>
-          Player {playerWins} - {computerWins} Computer{" "}
+          Player {playerWins} - {computerWins} Computer
         </h6>
       </div>
       <div id="winner">
@@ -41,10 +43,12 @@ export const show = (
           <img id="roundpick" src={computerImg} alt=".jpg" />
         </div>
       </div>
-      <button id="nextround" onClick={onclick}>
-        <p>Next round {roundNr + 1}</p>
-      </button>
     </>
+  );
+  const showNextRound = (
+    <button id="nextround" onClick={onclick}>
+      <p>{countRound}</p>
+    </button>
   );
   const showWinner =
     winner !== "Nobody" ? (
@@ -54,10 +58,10 @@ export const show = (
     ) : (
       <div id="winner">
         <h5>
-          Same, same so <br />
-          Nobody wins...
+          Same, same <br />
+          Nobody wins this round...
         </h5>
       </div>
     );
-  return { showResult, showWinner };
+  return { showResult, showNextRound, showWinner };
 };
