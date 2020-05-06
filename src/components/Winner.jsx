@@ -16,14 +16,15 @@ const Winner = (props) => {
   const winner = (
     <>
       <div id="standing">
-        <div id="winner">
+        <div id="final-winner">
           <h4>
-            Winner is... <br />
+            Winner is
+            <br />
             {props.gameWinner}
           </h4>
         </div>
       </div>
-      <button id="playagain" onClick={props.onButtonPlayAgain}>
+      <button id="nextround" onClick={props.onButtonPlayAgain}>
         <p>Play again ?</p>
       </button>
     </>

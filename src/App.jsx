@@ -13,6 +13,7 @@ import {
 import "./css/App.css";
 import Winner from "./components/Winner";
 import { Segment } from "semantic-ui-react";
+import { Footer } from "./Footer";
 
 class App extends Component {
   state = {
@@ -27,8 +28,7 @@ class App extends Component {
     computerWins: 0,
   };
   onButtonStartRound = () => {
-    const computer = getComputerChoise();
-    const roundWinner = announceRoundWinner(this.state.id, computer);
+    const roundWinner = announceRoundWinner(this.state.id, this.state.computer);
     const wins = checkGameWinner(
       roundWinner,
       this.state.playerWins,
@@ -39,13 +39,13 @@ class App extends Component {
       counter: this.state.counter,
       winner: roundWinner,
       gameWinner: wins.gameWinner,
-      computer: computer,
       playerWins: wins.playerWins,
       computerWins: wins.computerWins,
     });
   };
   onImgPick = (id) => {
-    this.setState({ id: id });
+    const computer = getComputerChoise();
+    this.setState({ id: id, computer: computer });
   };
   componentDidMount() {
     const imgLink = "./img/rps/";
@@ -115,8 +115,8 @@ class App extends Component {
             <NextRound
               winner={winner}
               id={id}
-              roundNr={roundNr}
               computer={computer}
+              roundNr={roundNr}
               playerWins={playerWins}
               computerWins={computerWins}
               onclick={() =>
@@ -132,12 +132,17 @@ class App extends Component {
             gameWinner={gameWinner}
             playerWins={playerWins}
             computerWins={computerWins}
+            id={id}
+            computer={computer}
             onButtonPlayAgain={() => {
               this.setState({
                 display: true,
                 gameWinner: null,
                 winner: "",
                 id: "",
+                computer: "",
+                playerWins: 0,
+                computerWins: 0,
               });
             }}
           />
@@ -152,6 +157,7 @@ class App extends Component {
         <Segment centered className="game">
           {renderGame}
         </Segment>
+        {/* <Footer /> */}
       </>
     );
   }

@@ -8,31 +8,57 @@ describe("User can play a game", () => {
     cy.get("img#rock").should("be.visible");
     cy.get("img#paper").should("be.visible");
     cy.get("img#scissor").should("be.visible");
-    cy.get("img#scissor").click();
-    cy.get("img.dynamicImage").should("be.visible");
-    cy.get("img#rock").should("not.be.visible");
-    cy.get("img#paper").should("not.be.visible");
 
+    cy.get("img#rock").click();
     cy.get("button#startround").click();
-    // cy.get("div.countdown").should("be.visible");
     cy.get("div#standing").should("be.visible");
-    cy.get("div#winner").should("be.visible");
 
-    for (let i = 0; i < 10; i++) {
-      cy.get("div#winner").then(() => {
-        if (cy.contain("Same, same")) {
+    cy.get("button#nextround")
+      .get("p")
+      .then((text) => {
+        if (text.text().includes("Replay round")) {
+          cy.get("div#winner")
+            .get("h5")
+            .contains("Same, same Nobody wins this round...");
           cy.get("button#nextround").click();
-          cy.get("img#rock").should("be.visible");
           cy.get("img#rock").click();
           cy.get("button#startround").click();
-
-          cy.get("div#winner").should("be.visible");
+          cy.get("div#standing").should("be.visible");
+        }
+        if (text.text().includes("Next round")) {
+          cy.get("button#nextround").click();
+          cy.get("img#rock").click();
+          cy.get("button#startround").click();
+          cy.get("div#standing").should("be.visible");
+        }
+        if (text.text() == "Play again ?") {
+          cy.get("div#final-winner").should("be.visible");
+          cy.get("div#final-winner").get("h4").contains("Winner is");
+          cy.get("button#nextround").click();
+          i = 10;
         } else {
-          cy.contain("Winner is...");
-          cy.get("button#playagain").click();
-          return (i = 10);
+          if (text.text().includes("Replay round")) {
+            cy.get("div#winner")
+              .get("h5")
+              .contains("Same, same Nobody wins this round...");
+            cy.get("button#nextround").click();
+            cy.get("img#rock").click();
+            cy.get("button#startround").click();
+            cy.get("div#standing").should("be.visible");
+          }
+          if (text.text().includes("Next round")) {
+            cy.get("button#nextround").click();
+            cy.get("img#rock").click();
+            cy.get("button#startround").click();
+            cy.get("div#standing").should("be.visible");
+          }
+          if (text.text() == "Play again ?") {
+            cy.get("div#final-winner").should("be.visible");
+            cy.get("div#final-winner").get("h4").contains("Winner is");
+            // cy.get("button#nextround").click();
+            i = 10;
+          }
         }
       });
-    }
   });
 });

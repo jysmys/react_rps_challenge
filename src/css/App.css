@@ -2,6 +2,8 @@
 
 body {
   background-color: #26006e;
+  margin: 0;
+  padding: 0;
 }
 div#showpicks,
 div#winner {
@@ -11,7 +13,8 @@ div#winner {
   align-items: center;
 }
 h1 {
-  font-family: "Bangers", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Bangers", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
   color: #fd2bf1;
   font-size: 60px;
   letter-spacing: 0.2em;
