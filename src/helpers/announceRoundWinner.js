@@ -1,7 +1,7 @@
 export const announceRoundWinner = (userChoice, computerChoice) => {
   switch (userChoice) {
-    case computerChoice:
-      return "Nobody";
+    // case computerChoice:
+    //   return "Nobody";
     case "paper":
       return computerChoice === "scissor"
         ? "Computer"

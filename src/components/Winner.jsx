@@ -11,17 +11,13 @@ const Winner = (props) => {
     props.roundNr,
     props.winner,
     props.computer,
-    props.id
+    props.player
   );
   const winner = (
     <>
       <div id="standing">
         <div id="final-winner">
-          <h4>
-            Winner is
-            <br />
-            {props.gameWinner}
-          </h4>
+          <h4>Winner is {props.gameWinner}</h4>
         </div>
       </div>
       <button id="nextround" onClick={props.onButtonPlayAgain}>

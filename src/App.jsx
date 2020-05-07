@@ -13,12 +13,12 @@ import {
 import "./css/App.css";
 import Winner from "./components/Winner";
 import { Segment } from "semantic-ui-react";
-import { Footer } from "./Footer";
+// import { Footer } from "./Footer";
 
 class App extends Component {
   state = {
     display: false,
-    id: "",
+    player: "",
     computer: "",
     images: [],
     currentImg: 0,
@@ -28,7 +28,10 @@ class App extends Component {
     computerWins: 0,
   };
   onButtonStartRound = () => {
-    const roundWinner = announceRoundWinner(this.state.id, this.state.computer);
+    const roundWinner = announceRoundWinner(
+      this.state.player,
+      this.state.computer
+    );
     const wins = checkGameWinner(
       roundWinner,
       this.state.playerWins,
@@ -43,9 +46,14 @@ class App extends Component {
       computerWins: wins.computerWins,
     });
   };
-  onImgPick = (id) => {
-    const computer = getComputerChoise();
-    this.setState({ id: id, computer: computer });
+  onImgPick = (player) => {
+    let computer;
+    computer = getComputerChoise();
+    while (computer === player) {
+      computer = getComputerChoise();
+    }
+    // debugger;
+    this.setState({ player: player, computer: computer });
   };
   componentDidMount() {
     const imgLink = "./img/rps/";
@@ -76,7 +84,7 @@ class App extends Component {
       currentImg,
       winner,
       gameWinner,
-      id,
+      player,
       computer,
       playerWins,
       computerWins,
@@ -95,8 +103,12 @@ class App extends Component {
       case display && gameWinner === null && winner === "":
         renderGame = (
           <div id="showpicks">
-            <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
-            {id !== "" && (
+            <ShowPicks
+              id={player}
+              onImgPick={this.onImgPick}
+              display={display}
+            />
+            {player !== "" && (
               <>
                 <ComputerShuffle imgString={imgString} />
                 <StartRound
@@ -114,13 +126,13 @@ class App extends Component {
           <>
             <NextRound
               winner={winner}
-              id={id}
+              player={player}
               computer={computer}
               roundNr={roundNr}
               playerWins={playerWins}
               computerWins={computerWins}
               onclick={() =>
-                this.setState({ display: true, winner: "", id: "" })
+                this.setState({ display: true, winner: "", player: "" })
               }
             />
           </>
@@ -132,14 +144,14 @@ class App extends Component {
             gameWinner={gameWinner}
             playerWins={playerWins}
             computerWins={computerWins}
-            id={id}
+            player={player}
             computer={computer}
             onButtonPlayAgain={() => {
               this.setState({
                 display: true,
                 gameWinner: null,
                 winner: "",
-                id: "",
+                player: "",
                 computer: "",
                 playerWins: 0,
                 computerWins: 0,

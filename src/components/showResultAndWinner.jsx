@@ -7,7 +7,7 @@ export const show = (
   roundNr,
   winner,
   computer,
-  id
+  player
 ) => {
   const imageRock = require("../img/rps/rock-90d.jpg");
   const imagePaper = require("../img/rps/paper-90d.jpg");
@@ -22,9 +22,13 @@ export const show = (
       ? cimagePaper
       : cimageSciccor;
   let playerImg =
-    id === "rock" ? imageRock : id === "paper" ? imagePaper : imageSciccor;
-  let countRound =
-    winner !== "Nobody" ? `Next round ${roundNr}` : `Replay round ${roundNr}`;
+    player === "rock"
+      ? imageRock
+      : player === "paper"
+      ? imagePaper
+      : imageSciccor;
+  // let countRound =
+  // winner !== "Nobody" ? `Next round ${roundNr}` : `Replay round ${roundNr}`;
 
   const showResult = (
     <>
@@ -47,21 +51,26 @@ export const show = (
   );
   const showNextRound = (
     <button id="nextround" onClick={onclick}>
-      <p>{countRound}</p>
+      <p>Next round {roundNr}</p>
     </button>
   );
-  const showWinner =
-    winner !== "Nobody" ? (
-      <div id="winner">
-        <h5>{winner} wins this round!</h5>
-      </div>
-    ) : (
-      <div id="winner">
-        <h5>
-          Same, same <br />
-          Nobody wins this round...
-        </h5>
-      </div>
-    );
+  const showWinner = (
+    <div id="winner">
+      <h5>{winner} wins this round!</h5>
+    </div>
+  );
+  // const showWinner =
+  //   winner !== "Nobody" ? (
+  //     <div id="winner">
+  //       <h5>{winner} wins this round!</h5>
+  //     </div>
+  //   ) : (
+  //     <div id="winner">
+  //       <h5>
+  //         Same, same <br />
+  //         Nobody wins this round...
+  //       </h5>
+  //     </div>
+  //   );
   return { showResult, showNextRound, showWinner };
 };

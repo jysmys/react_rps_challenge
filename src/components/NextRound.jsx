@@ -11,7 +11,7 @@ const NextRound = (props) => {
     props.roundNr,
     props.winner,
     props.computer,
-    props.id
+    props.player
   );
   const [counter, setCounter] = useState(3);
   useEffect(() => {
