@@ -12,8 +12,7 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./css/App.css";
 import Winner from "./components/Winner";
-import { Segment } from "semantic-ui-react";
-// import { Footer } from "./Footer";
+import { Footer } from "./Footer";
 
 class App extends Component {
   state = {
@@ -52,7 +51,6 @@ class App extends Component {
     while (computer === player) {
       computer = getComputerChoise();
     }
-    // debugger;
     this.setState({ player: player, computer: computer });
   };
   componentDidMount() {
@@ -148,7 +146,7 @@ class App extends Component {
             computer={computer}
             onButtonPlayAgain={() => {
               this.setState({
-                display: true,
+                display: false,
                 gameWinner: null,
                 winner: "",
                 player: "",
@@ -161,15 +159,14 @@ class App extends Component {
         );
         break;
       default:
-        break;
     }
     return (
       <>
         <Header />
-        <Segment centered className="game">
+        <div centered className="game">
           {renderGame}
-        </Segment>
-        {/* <Footer /> */}
+        </div>
+        <Footer />
       </>
     );
   }

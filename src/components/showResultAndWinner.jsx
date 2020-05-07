@@ -27,8 +27,6 @@ export const show = (
       : player === "paper"
       ? imagePaper
       : imageSciccor;
-  // let countRound =
-  // winner !== "Nobody" ? `Next round ${roundNr}` : `Replay round ${roundNr}`;
 
   const showResult = (
     <>
@@ -59,18 +57,6 @@ export const show = (
       <h5>{winner} wins this round!</h5>
     </div>
   );
-  // const showWinner =
-  //   winner !== "Nobody" ? (
-  //     <div id="winner">
-  //       <h5>{winner} wins this round!</h5>
-  //     </div>
-  //   ) : (
-  //     <div id="winner">
-  //       <h5>
-  //         Same, same <br />
-  //         Nobody wins this round...
-  //       </h5>
-  //     </div>
-  //   );
+
   return { showResult, showNextRound, showWinner };
 };

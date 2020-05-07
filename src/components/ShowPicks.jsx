@@ -8,7 +8,7 @@ const ShowPicks = (props) => {
   const displayRock = props.id === "rock" || (props.id === "" && true);
   const displayPaper = props.id === "paper" || (props.id === "" && true);
   const displayScissor = props.id === "scissor" || (props.id === "" && true);
-  // debugger;
+
   return (
     <div id="showpick">
       <div id="yourpick">

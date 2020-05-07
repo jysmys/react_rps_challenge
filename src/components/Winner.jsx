@@ -1,4 +1,3 @@
-//https://codesandbox.io/s/simple-react-countdown-timer-zyfr0?file=/src/index.tsx:32-67
 import React, { useState, useEffect } from "react";
 import { show } from "./showResultAndWinner";
 import "../css/Winner.css";

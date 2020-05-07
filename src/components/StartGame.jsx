@@ -1,22 +1,21 @@
 import React from "react";
-import { Grid, Button } from "semantic-ui-react";
 import "../css/StartGame.css";
 
 const StartGame = (props) => {
   return (
-    <Grid centered>
-      <Grid.Column>
+    <div>
+      <div>
         <h5>Start game against the computer</h5>
-      </Grid.Column>
-      <Grid.Column>
+      </div>
+      <div>
         <h6>Best of 3 rounds</h6>
-      </Grid.Column>
-      <Grid.Column>
-        <Button id="startgame" onClick={props.onButtonStartGame}>
+      </div>
+      <div>
+        <button id="startgame" onClick={props.onButtonStartGame}>
           <p id="startbutton">Start game</p>
-        </Button>
-      </Grid.Column>
-    </Grid>
+        </button>
+      </div>
+    </div>
   );
 };
 export default StartGame;
