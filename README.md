@@ -2,6 +2,10 @@
 
 RPS game developed with React where you can play against the computer, best of 3 rounds. Computer choise is randomly picked. Player can pick for him self.
 
+### User Stories
+
+[User Stories](https://www.pivotaltracker.com/n/projects/2445167)
+
 ### System dependencies
 
 - react 16.13.1
