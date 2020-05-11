@@ -12,11 +12,7 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./css/App.css";
 import Winner from "./components/Winner";
-<<<<<<< HEAD
 import FacebookLogin from "./components/FacebookLogin";
-=======
-import { Footer } from "./Footer";
->>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
 
 class App extends Component {
   state = {
@@ -52,11 +48,6 @@ class App extends Component {
       computerWins: wins.computerWins,
     });
   };
-<<<<<<< HEAD
-
-  onImgPick = (id) => {
-    this.setState({ id: id });
-=======
   onImgPick = (player) => {
     let computer;
     computer = getComputerChoise();
@@ -64,7 +55,6 @@ class App extends Component {
       computer = getComputerChoise();
     }
     this.setState({ player: player, computer: computer });
->>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
   };
   onName = (name) => {
     this.setState({ name: name });
@@ -178,7 +168,6 @@ class App extends Component {
     }
     return (
       <>
-<<<<<<< HEAD
         <Header
           onAuthenticate={() => {
             this.setState({ authenticated: true });
@@ -187,13 +176,6 @@ class App extends Component {
         />
         <FacebookLogin />
         <div className="game">{renderGame}</div>
-=======
-        <Header />
-        <div centered className="game">
-          {renderGame}
-        </div>
-        <Footer />
->>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
       </>
     );
   }
