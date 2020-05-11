@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
 body {
   background-color: #26006e;
+  font-family: "Fredoka One", cursive;
 }
 div#showpicks {
   display: flex;
@@ -10,21 +12,24 @@ div#showpicks {
   align-items: center;
 }
 h1 {
-  font-family: "Bangers", cursive;
+  /* font-family: "Bangers", cursive; */
+  /* font-family: "Fredoka One", cursive; */
   color: #fd2bf1;
   font-size: 60px;
   letter-spacing: 0.2em;
 }
 h6 {
-  font-family: "Bangers", cursive;
-  color: #3278ed;
+  /* font-family: "Bangers", cursive; */
+  /* font-family: "Fredoka One", cursive; */
+  color: #43754e;
   font-size: 30px;
   letter-spacing: 0.2em;
   text-align: center;
   margin: 0;
 }
 h5 {
-  font-family: "Bangers", cursive;
+  /* font-family: "Bangers", cursive; */
+  /* font-family: "Fredoka One", cursive; */
   color: #3278ed;
   font-size: 35px;
   letter-spacing: 0.2em;
@@ -32,7 +37,7 @@ h5 {
   margin: 0;
 }
 h4 {
-  font-family: "Bangers", cursive;
+  /* font-family: "Bangers", cursive; */
   color: #3278ed;
   font-size: 35px;
   letter-spacing: 0.2em;
@@ -40,19 +45,19 @@ h4 {
   margin: 0;
 }
 p {
-  font-family: "Bangers", cursive;
+  /* font-family: "Bangers", cursive; */
   color: #26006e;
   font-size: 25px;
   letter-spacing: 0.2em;
   text-align: center;
   margin: 0;
 }
-/* button p {
-  font-family: "Bangers", cursive;
+button#facebook-login {
+  /* font-family: "Bangers", cursive; */
   color: #26006e;
   font-size: 30px;
   letter-spacing: 0.2em;
-} */
+}
 /* #footer {
   font-family: "Bangers", cursive;
   color: #3278ed;

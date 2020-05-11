@@ -12,6 +12,7 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./css/App.css";
 import Winner from "./components/Winner";
+import FacebookLogin from "./components/FacebookLogin";
 
 class App extends Component {
   state = {
@@ -159,6 +160,7 @@ class App extends Component {
           }}
           name={this.onName}
         />
+        <FacebookLogin />
         <div className="game">{renderGame}</div>
       </>
     );

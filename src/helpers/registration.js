@@ -10,8 +10,8 @@ const registration = async (name, email, password, password_confirmation) => {
         password_confirmation,
       },
     });
-    // await storeAuthCredentials(response);
-    console.log(response.data);
+    await storeAuthCredentials(response);
+    // console.log(response.data);
     return { authenticated: true, data: response.data };
   } catch (error) {
     return { authenticated: false, message: error.response.data.errors };
