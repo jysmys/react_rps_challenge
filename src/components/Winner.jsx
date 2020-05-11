@@ -1,20 +1,26 @@
-//https://codesandbox.io/s/simple-react-countdown-timer-zyfr0?file=/src/index.tsx:32-67
 import React, { useState, useEffect } from "react";
+import { show } from "./showResultAndWinner";
+import "../css/Winner.css";
 
 const Winner = (props) => {
+  const { showResult } = show(
+    props.playerWins,
+    props.computerWins,
+    props.onclick,
+    props.roundNr,
+    props.winner,
+    props.computer,
+    props.player
+  );
   const winner = (
     <>
       <div id="standing">
-        <p>
-          Player {props.playerWins} - {props.computerWins} Computer{" "}
-        </p>
+        <div id="final-winner">
+          <h4>Winner is {props.gameWinner}</h4>
+        </div>
       </div>
-      <div id="winner">
-        And the winner is... <br />
-        {props.gameWinner}
-      </div>
-      <button id="playagain" onClick={props.onButtonPlayAgain}>
-        <p>Play again</p>
+      <button id="nextround" onClick={props.onButtonPlayAgain}>
+        <p>Play again ?</p>
       </button>
     </>
   );
@@ -31,7 +37,12 @@ const Winner = (props) => {
           <div>{counter}</div>
         </div>
       )}
-      {counter === 0 && <>{winner}</>}
+      {counter === 0 && (
+        <>
+          {showResult}
+          {winner}
+        </>
+      )}
     </>
   );
 };

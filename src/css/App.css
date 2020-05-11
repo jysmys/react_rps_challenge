@@ -5,7 +5,8 @@ body {
   background-color: #26006e;
   font-family: "Fredoka One", cursive;
 }
-div#showpicks {
+div#showpicks,
+div#winner {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -15,7 +16,7 @@ h1 {
   /* font-family: "Bangers", cursive; */
   /* font-family: "Fredoka One", cursive; */
   color: #fd2bf1;
-  font-size: 60px;
+  font-size: 55px;
   letter-spacing: 0.2em;
 }
 h6 {

@@ -12,17 +12,20 @@ import {
 } from "./helpers/announceRoundWinner";
 import "./css/App.css";
 import Winner from "./components/Winner";
+<<<<<<< HEAD
 import FacebookLogin from "./components/FacebookLogin";
+=======
+import { Footer } from "./Footer";
+>>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
 
 class App extends Component {
   state = {
     display: false,
-    id: "",
+    player: "",
     computer: "",
     images: [],
     currentImg: 0,
     winner: "",
-    gameWin: [],
     gameWinner: null,
     playerWins: 0,
     computerWins: 0,
@@ -31,23 +34,37 @@ class App extends Component {
   };
 
   onButtonStartRound = () => {
-    const computer = getComputerChoise();
-    const roundWinner = announceRoundWinner(this.state.id, computer);
-    const wins = checkGameWinner(roundWinner, this.state.gameWin);
+    const roundWinner = announceRoundWinner(
+      this.state.player,
+      this.state.computer
+    );
+    const wins = checkGameWinner(
+      roundWinner,
+      this.state.playerWins,
+      this.state.computerWins
+    );
     this.setState({
       display: false,
       counter: this.state.counter,
       winner: roundWinner,
-      gameWin: wins.gameWin,
-      gameWinner: wins.gamewinner,
-      computer: computer,
-      playerWins: wins.player,
-      computerWins: wins.computer,
+      gameWinner: wins.gameWinner,
+      playerWins: wins.playerWins,
+      computerWins: wins.computerWins,
     });
   };
+<<<<<<< HEAD
 
   onImgPick = (id) => {
     this.setState({ id: id });
+=======
+  onImgPick = (player) => {
+    let computer;
+    computer = getComputerChoise();
+    while (computer === player) {
+      computer = getComputerChoise();
+    }
+    this.setState({ player: player, computer: computer });
+>>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
   };
   onName = (name) => {
     this.setState({ name: name });
@@ -80,16 +97,15 @@ class App extends Component {
       images,
       currentImg,
       winner,
-      gameWin,
       gameWinner,
-      id,
+      player,
       computer,
       playerWins,
       computerWins,
     } = this.state;
     let imgString = images[currentImg];
     let renderGame;
-
+    let roundNr = playerWins + computerWins + 1;
     switch (true) {
       case !display && gameWinner === null && winner === "":
         renderGame = (
@@ -101,14 +117,18 @@ class App extends Component {
       case display && gameWinner === null && winner === "":
         renderGame = (
           <div id="showpicks">
-            <ShowPicks id={id} onImgPick={this.onImgPick} display={display} />
-            {id !== "" && (
+            <ShowPicks
+              id={player}
+              onImgPick={this.onImgPick}
+              display={display}
+            />
+            {player !== "" && (
               <>
                 <ComputerShuffle imgString={imgString} />
                 <StartRound
                   onButtonStartRound={this.onButtonStartRound}
                   winner={winner}
-                  roundNr={gameWin.length + 1}
+                  roundNr={roundNr}
                 />
               </>
             )}
@@ -120,13 +140,13 @@ class App extends Component {
           <>
             <NextRound
               winner={winner}
-              id={id}
-              roundNr={gameWin.length}
+              player={player}
               computer={computer}
+              roundNr={roundNr}
               playerWins={playerWins}
               computerWins={computerWins}
               onclick={() =>
-                this.setState({ display: true, winner: "", id: "" })
+                this.setState({ display: true, winner: "", player: "" })
               }
             />
           </>
@@ -138,13 +158,17 @@ class App extends Component {
             gameWinner={gameWinner}
             playerWins={playerWins}
             computerWins={computerWins}
+            player={player}
+            computer={computer}
             onButtonPlayAgain={() => {
               this.setState({
-                display: true,
+                display: false,
                 gameWinner: null,
                 winner: "",
-                gameWin: [],
-                id: "",
+                player: "",
+                computer: "",
+                playerWins: 0,
+                computerWins: 0,
               });
             }}
           />
@@ -154,6 +178,7 @@ class App extends Component {
     }
     return (
       <>
+<<<<<<< HEAD
         <Header
           onAuthenticate={() => {
             this.setState({ authenticated: true });
@@ -162,6 +187,13 @@ class App extends Component {
         />
         <FacebookLogin />
         <div className="game">{renderGame}</div>
+=======
+        <Header />
+        <div centered className="game">
+          {renderGame}
+        </div>
+        <Footer />
+>>>>>>> ae3ba59dc0171a40e1a929a3b7d8e43cbcfed7c8
       </>
     );
   }

@@ -7,7 +7,7 @@ export const show = (
   roundNr,
   winner,
   computer,
-  id
+  player
 ) => {
   const imageRock = require("../img/rps/rock-90d.jpg");
   const imagePaper = require("../img/rps/paper-90d.jpg");
@@ -22,32 +22,41 @@ export const show = (
       ? cimagePaper
       : cimageSciccor;
   let playerImg =
-    id === "rock" ? imageRock : id === "paper" ? imagePaper : imageSciccor;
+    player === "rock"
+      ? imageRock
+      : player === "paper"
+      ? imagePaper
+      : imageSciccor;
 
   const showResult = (
     <>
       <div id="standing">
-        <p>
-          Player {playerWins} - {computerWins} Computer{" "}
-        </p>
+        <h6>
+          Player {playerWins} - {computerWins} Computer
+        </h6>
       </div>
-      <p>Players pick</p>
-      <img id="roundpick" src={playerImg} alt=".jpg" />
-      <p>Computers pick</p>
-      <img id="roundpick" src={computerImg} alt=".jpg" />
-      <button id="nextround" onClick={onclick}>
-        <p>Next round {roundNr + 1}</p>
-      </button>
+      <div id="winner">
+        <div id="playerpick">
+          <h6>Player</h6>
+          <img id="roundpick" src={playerImg} alt=".jpg" />
+        </div>
+        <div id="computerpick">
+          <h6>Computer</h6>
+          <img id="roundpick" src={computerImg} alt=".jpg" />
+        </div>
+      </div>
     </>
   );
-  const showWinner =
-    winner !== "Nobody" ? (
-      <div id="winner">{winner} wins this round!</div>
-    ) : (
-      <div id="winner">
-        Same, same so <br />
-        Nobody wins...
-      </div>
-    );
-  return { showResult, showWinner };
+  const showNextRound = (
+    <button id="nextround" onClick={onclick}>
+      <p>Next round {roundNr}</p>
+    </button>
+  );
+  const showWinner = (
+    <div id="winner">
+      <h5>{winner} wins this round!</h5>
+    </div>
+  );
+
+  return { showResult, showNextRound, showWinner };
 };

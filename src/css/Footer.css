@@ -1,0 +1,12 @@
+div#footer {
+  position: fixed;
+  height: 20px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+p#footer {
+  color: blueviolet;
+  font-size: 17px;
+}

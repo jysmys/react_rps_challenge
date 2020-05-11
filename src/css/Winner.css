@@ -7,36 +7,7 @@
   margin: 0 30%;
   display: block;
 }
-div#nextround {
-  flex-direction: row;
-  align-items: center;
-  flex: 1 0 100%;
-  padding-top: 50px;
-}
-div#standing {
-  flex-direction: row;
-  align-items: center;
-  flex: 1 0 100%;
-  padding-top: 50px;
-}
-div#result {
-  flex-direction: row;
-  align-items: center;
-  flex: 1 0 33%;
-  padding-top: 50px;
-}
-img#roundpick {
-  width: 180px;
-  height: 150px;
-  padding-top: 30px;
-}
-div#computerpick {
-  padding-left: 20px;
-}
-div#winner {
-  padding-top: 30px;
-}
-button#nextround {
+button#playagain {
   margin: 0 auto;
   display: block;
   letter-spacing: 0.1em;
@@ -51,7 +22,7 @@ button#nextround {
   cursor: pointer;
   outline: none;
 }
-button#nextround:hover {
+button#playagain:hover {
   background-color: #2ee59d;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   transform: translateY(-7px);
