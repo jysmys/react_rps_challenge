@@ -12,6 +12,7 @@ const Winner = (props) => {
     props.computer,
     props.player
   );
+
   const winner = (
     <>
       <div id="standing">
@@ -24,12 +25,15 @@ const Winner = (props) => {
       </button>
     </>
   );
+
   const [counter, setCounter] = useState(3);
+
   useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
     return () => clearInterval(timer);
   }, [counter]);
+
   return (
     <>
       {counter !== 0 && (
@@ -46,4 +50,5 @@ const Winner = (props) => {
     </>
   );
 };
+
 export default Winner;

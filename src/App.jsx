@@ -26,6 +26,18 @@ class App extends Component {
     playerWins: 0,
     computerWins: 0,
   };
+
+  componentDidMount() {
+    const imgLink = "./img/rps/";
+    const images = [
+      require(imgLink + "rock-computer.jpg"),
+      require(imgLink + "paper-computer.jpg"),
+      require(imgLink + "scissors-computer.jpg"),
+    ];
+    this.setState({ images: images });
+    this.interval = setInterval(() => this.changeImage(), 1000);
+  }
+
   onButtonStartRound = () => {
     const roundWinner = announceRoundWinner(
       this.state.player,
@@ -45,6 +57,7 @@ class App extends Component {
       computerWins: wins.computerWins,
     });
   };
+  
   onImgPick = (player) => {
     let computer;
     computer = getComputerChoise();
@@ -53,19 +66,11 @@ class App extends Component {
     }
     this.setState({ player: player, computer: computer });
   };
-  componentDidMount() {
-    const imgLink = "./img/rps/";
-    const images = [
-      require(imgLink + "rock-computer.jpg"),
-      require(imgLink + "paper-computer.jpg"),
-      require(imgLink + "scissors-computer.jpg"),
-    ];
-    this.setState({ images: images });
-    this.interval = setInterval(() => this.changeImage(), 1000);
-  }
+
   componentWillUnmount() {
     this.interval && clearInterval(this.interval);
   }
+
   changeImage() {
     if (this.state.display) {
       let newCurrentImg = 0;
@@ -75,6 +80,7 @@ class App extends Component {
       this.setState({ currentImg: newCurrentImg });
     }
   }
+
   render() {
     const {
       display,
