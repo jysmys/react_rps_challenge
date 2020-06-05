@@ -1,18 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { show } from "./showResultAndWinner";
+import showResult from "./showResultAndWinner";
 import "../css/Winner.css";
 
 const Winner = (props) => {
-  const { showResult } = show(
-    props.playerWins,
-    props.computerWins,
-    props.onclick,
-    props.roundNr,
-    props.winner,
-    props.computer,
-    props.player
-  );
-
   const winner = (
     <>
       <div id="standing">

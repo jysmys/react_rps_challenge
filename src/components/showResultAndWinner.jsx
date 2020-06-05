@@ -1,26 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-export const show = (
-  playerWins,
-  computerWins,
-  onclick,
-  roundNr,
-  winner,
-  computer,
-  player
-) => {
+const showPlayer = () => {
   const imageRock = require("../img/rps/rock-90d.jpg");
   const imagePaper = require("../img/rps/paper-90d.jpg");
   const imageSciccor = require("../img/rps/scissors-90d.jpg");
-  const cimageRock = require("../img/rps/rock-computer-90d.jpg");
-  const cimagePaper = require("../img/rps/paper-computer-90d.jpg");
-  const cimageSciccor = require("../img/rps/scissors-computer-90d.jpg");
-  let computerImg =
-    computer === "rock"
-      ? cimageRock
-      : computer === "paper"
-      ? cimagePaper
-      : cimageSciccor;
+
+  const player = useSelector((state) => state.player);
+
   let playerImg =
     player === "rock"
       ? imageRock
@@ -28,7 +15,29 @@ export const show = (
       ? imagePaper
       : imageSciccor;
 
-  const showResult = (
+  return playerImg;
+};
+
+const showComputer = () => {
+  const cimageRock = require("../img/rps/rock-computer-90d.jpg");
+  const cimagePaper = require("../img/rps/paper-computer-90d.jpg");
+  const cimageSciccor = require("../img/rps/scissors-computer-90d.jpg");
+
+  const computer = useSelector((state) => state.computer);
+
+  let computerImg =
+    computer === "rock"
+      ? cimageRock
+      : computer === "paper"
+      ? cimagePaper
+      : cimageSciccor;
+  return computerImg;
+};
+
+const showResult = () => {
+  const playerWins = useSelector((state) => state.playerWins);
+  const computerWins = useSelector((state) => state.computerWins);
+  return (
     <>
       <div id="standing">
         <h6>
@@ -38,25 +47,15 @@ export const show = (
       <div id="winner">
         <div id="playerpick">
           <h6>Player</h6>
-          <img id="roundpick" src={playerImg} alt=".jpg" />
+          <img id="roundpick" src={showPlayer()} alt=".jpg" />
         </div>
         <div id="computerpick">
           <h6>Computer</h6>
-          <img id="roundpick" src={computerImg} alt=".jpg" />
+          <img id="roundpick" src={showComputer()} alt=".jpg" />
         </div>
       </div>
     </>
   );
-  const showNextRound = (
-    <button id="nextround" onClick={onclick}>
-      <p>Next round {roundNr}</p>
-    </button>
-  );
-  const showWinner = (
-    <div id="winner">
-      <h5>{winner} wins this round!</h5>
-    </div>
-  );
-
-  return { showResult, showNextRound, showWinner };
 };
+
+export default showResult;

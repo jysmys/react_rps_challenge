@@ -1,5 +1,7 @@
 import React from "react";
+import { connect, useSelector } from "react-redux";
 import "../css/ShowPicks.css";
+import { getComputerChoise } from "../helpers/getComputerChoise";
 
 const ShowPicks = (props) => {
   const imageRock = require("../img/rps/rock.jpg");
@@ -8,6 +10,20 @@ const ShowPicks = (props) => {
   const displayRock = props.id === "rock" || (props.id === "" && true);
   const displayPaper = props.id === "paper" || (props.id === "" && true);
   const displayScissor = props.id === "scissor" || (props.id === "" && true);
+
+  const player = useSelector((state) => state.player);
+  const computer = useSelector((state) => state.computer);
+
+  const onImgPick = () => {
+    // let computer = getComputerChoise();
+    while (computer === player) {
+      computer = getComputerChoise();
+    }
+    props.dispatch({
+      type: "PLAYER",
+      payload: { player: player, computer: computer },
+    });
+  };
 
   return (
     <div id="showpick">
@@ -18,7 +34,7 @@ const ShowPicks = (props) => {
         <button
           className="imgbutton"
           id="rock"
-          onClick={(e) => props.onImgPick(e.target.id)}
+          onClick={(e) => onImgPick(e.target.id)}
         >
           <img id="rock" src={imageRock} alt="rock.jpg" />
         </button>
@@ -27,7 +43,7 @@ const ShowPicks = (props) => {
         <button
           className="imgbutton"
           id="paper"
-          onClick={(e) => props.onImgPick(e.target.id)}
+          onClick={(e) => onImgPick(e.target.id)}
         >
           <img id="paper" src={imagePaper} alt="paper.jpg" />
         </button>
@@ -36,7 +52,7 @@ const ShowPicks = (props) => {
         <button
           className="imgbutton"
           id="scissor"
-          onClick={(e) => props.onImgPick(e.target.id)}
+          onClick={(e) => onImgPick(e.target.id)}
         >
           <img id="scissor" src={imageSciccor} alt="scissors.jpg" />
         </button>
@@ -44,4 +60,4 @@ const ShowPicks = (props) => {
     </div>
   );
 };
-export default ShowPicks;
+export default connect()(ShowPicks);
